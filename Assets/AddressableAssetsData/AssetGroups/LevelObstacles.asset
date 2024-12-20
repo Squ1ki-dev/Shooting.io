@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LevelObstacles
+  m_EditorClassIdentifier: 
+  m_GroupName: LevelObstacles
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3a43b07639241dd4480a3f6278327d5b
+  m_SerializeEntries:
+  - m_GUID: fc3a5894873b3d04fb138a9b3a5eb46c
+    m_Address: Prefabs/Cube
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d3198bcdbd777044be18f94360a7a3e
+    m_Address: Prefabs/Cylinder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2fcb3ee84ab5b04d9486bf1caae46cc
+    m_Address: Prefabs/Sphere
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c2b2a5a39e9251a43aaeb7e69bf447e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 582c4657941acb74688f2df14efd7623, type: 2}
+    - {fileID: 11400000, guid: 8251408cee2a2cc4fa402200d6f6a8f2, type: 2}
