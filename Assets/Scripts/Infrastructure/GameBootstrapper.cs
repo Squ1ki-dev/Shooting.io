@@ -1,15 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBootstrapper : MonoBehaviour
+public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
 {
+    public LoadingCurtain Curtain;
     private Game _game;
 
     private void Awake()
     {
-        _game = new Game();
-
+        _game = new Game(this, Curtain);
+        _game.StateMachine.Enter<BootstrapState>();
         DontDestroyOnLoad(this);
     }
 }

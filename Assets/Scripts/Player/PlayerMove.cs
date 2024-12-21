@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour
 {
-    public CharacterController CharacterController;
     public float MovementSpeed;
 
+    private CharacterController _characterController;
     private IInputService _inputService;
     private Camera _camera;
 
     private void Awake()
     {
-        _inputService = Game.InputService;
+        _inputService = AllServices.Container.Single<IInputService>();
+
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -35,6 +38,6 @@ public class PlayerMove : MonoBehaviour
 
         movementVector += Physics.gravity;
         
-        CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
+        _characterController.Move(MovementSpeed * movementVector * Time.deltaTime);
     }
 }
