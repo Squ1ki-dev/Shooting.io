@@ -8,10 +8,7 @@ public class HUDService : MonoBehaviour
     private WaveSystem _waveSystem;
 
     [Inject]
-    public void Construct(WaveSystem waveSystem)
-    {
-        _waveSystem = waveSystem;
-    }
+    private void Construct(WaveSystem waveSystem) => _waveSystem = waveSystem;
 
     private void Start()
     {

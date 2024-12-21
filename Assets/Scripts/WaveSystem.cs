@@ -8,5 +8,6 @@ public class WaveSystem : MonoBehaviour
     {
         Debug.Log("Wave Started!");
         Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -14,8 +14,6 @@ public class GameInstaller : MonoInstaller
         BindGame();
         BindHUD();
         BindWave();
-    
-        
     }
 
     private void BindWave()

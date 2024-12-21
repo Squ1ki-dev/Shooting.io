@@ -7,7 +7,6 @@ public class LoadLevelState : IPayloadedState<string>
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingCurtain _curtain;
     private readonly IGameFactory _gameFactory;
-    
 
     public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory)
     {
@@ -21,7 +20,7 @@ public class LoadLevelState : IPayloadedState<string>
     {
         _curtain.Show();
         _sceneLoader.Load(sceneName, OnLoaded);
-    } 
+    }
 
     public void Exit() => _curtain.Hide();
 

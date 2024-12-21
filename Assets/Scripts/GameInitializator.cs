@@ -7,7 +7,7 @@ public class GameInitializer : MonoBehaviour
     private WaveSystem _waveSystem;
 
     [Inject]
-    public void Construct(MainGame mainGame, WaveSystem waveSystem)
+    private void Construct(MainGame mainGame, WaveSystem waveSystem)
     {
         _mainGame = mainGame;
         _waveSystem = waveSystem;
@@ -16,11 +16,8 @@ public class GameInitializer : MonoBehaviour
     private void Start()
     {
         if (_waveSystem == null) Debug.LogError("WaveSystem is not injected!");
-        
-        if (_mainGame != null && _waveSystem != null)
-        {
-            _mainGame.OnGameStateEntered += _waveSystem.StartWave;
-        }
+    
+        _mainGame.OnGameStateEntered += _waveSystem.StartWave;
     }
 
 

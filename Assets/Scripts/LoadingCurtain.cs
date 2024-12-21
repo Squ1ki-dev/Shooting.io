@@ -5,6 +5,7 @@ using UnityEngine;
 public class LoadingCurtain : MonoBehaviour
 {
     public CanvasGroup Curtain;
+    private readonly IGameFactory _gameFactory;
 
     private void Awake()
     {
@@ -28,5 +29,6 @@ public class LoadingCurtain : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        _gameFactory.CreateHud();
     }
 }

@@ -364,8 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _game: {fileID: 1200224862}
   gameInitializerPrefab: {fileID: 1627041332}
-  _hudService: {fileID: 8618244986492046452, guid: 1d1130fe10e4bb347a224e6d4b5d03a7,
-    type: 3}
+  _hudService: {fileID: 0}
   _waveSystem: {fileID: 538575189}
 --- !u!114 &264122601
 MonoBehaviour:
@@ -1215,7 +1214,7 @@ GameObject:
   - component: {fileID: 538575190}
   - component: {fileID: 538575189}
   m_Layer: 0
-  m_Name: WaveManager
+  m_Name: WaveSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1432,7 +1431,7 @@ GameObject:
   - component: {fileID: 1200224863}
   - component: {fileID: 1200224862}
   m_Layer: 0
-  m_Name: Init
+  m_Name: GameStates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1769,7 +1768,7 @@ GameObject:
   - component: {fileID: 1627041333}
   - component: {fileID: 1627041332}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
