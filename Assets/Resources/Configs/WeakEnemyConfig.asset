@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 20
   DamageValue: 5
+  AttackCooldown: 3
   EnemyPrefab: {fileID: 4949932929223706187, guid: 6274746acca145244be0f91f4cd0947c,
     type: 3}

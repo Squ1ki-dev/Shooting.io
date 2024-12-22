@@ -7,7 +7,8 @@ public class GameInstaller : MonoInstaller
     public GameState _game;
     public GameInitializer gameInitializerPrefab;
     public HUDService _hudService;
-    public WaveSystem _waveSystem; 
+    public WaveSystem _waveSystem;
+    private EnemyMoveToPlayer enemyMoveToPlayer;
 
     public override void InstallBindings()
     {

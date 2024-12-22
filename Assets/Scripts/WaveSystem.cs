@@ -1,24 +1,40 @@
 using UnityEngine;
 using TMPro;
+using Zenject;
 
 public class WaveSystem : MonoBehaviour
 {
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private EnemySO weakEnemySO;
-    [SerializeField] private EnemySO normalEnemySO;
-    [SerializeField] private EnemySO bossEnemySO;
-    [SerializeField] private WaveSetupSO waveSetup;
-    [SerializeField] private TMP_Text timerText;
-
+    private GameState _mainGame;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private EnemySO _weakEnemySO;
+    [SerializeField] private EnemySO _normalEnemySO;
+    [SerializeField] private EnemySO _bossEnemySO;
+    [SerializeField] private WaveSetupSO _waveSetup;
+    [SerializeField] private TMP_Text _timerText;
+    
     private int currentWave = 1;
     public int CurrentWave { get { return currentWave; } }
     private float waveTime;
     private bool waveActive = false;
 
+    [Inject]
+    private void Construct(GameState mainGame)
+    {
+        _mainGame = mainGame;
+    }
+
     private void Start()
     {
-        Debug.Log("Wave" + PlayerPrefs.GetInt("WaveNumber"));
+        // Ensure the PlayerPrefs value is set if it doesn't exist
+        if (!PlayerPrefs.HasKey("WaveNumber"))
+        {
+            PlayerPrefs.SetInt("WaveNumber", currentWave);
+            PlayerPrefs.Save();
+        }
+        
+        Debug.Log("Wave " + PlayerPrefs.GetInt("WaveNumber"));
     }
+
 
     private void Update()
     {
@@ -30,7 +46,8 @@ public class WaveSystem : MonoBehaviour
             if (waveTime <= 0)
             {
                 waveActive = false;
-                StartNextWave();
+                _mainGame.ChangeState(State.Finish);
+                _timerText.gameObject.SetActive(false);
             }
         }
     }
@@ -40,7 +57,7 @@ public class WaveSystem : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
 
-        timerText.text = $"{minutes:00}:{seconds:00}";
+        _timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
     public void StartNextWave()
@@ -49,35 +66,34 @@ public class WaveSystem : MonoBehaviour
         waveActive = true;
 
         SpawnEnemies(currentWave);
-
-        currentWave++;
         PlayerPrefs.SetInt("WaveNumber", currentWave);
+        currentWave++;
     }
 
     private void SpawnEnemies(int waveNumber)
     {
-        int weakEnemyCount = waveSetup.BaseWeakEnemyCount + (waveNumber - 1) * waveSetup.EnemyIncrementPerWave;
-        int normalEnemyCount =  waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * waveSetup.EnemyIncrementPerWave;
+        int weakEnemyCount = _waveSetup.BaseWeakEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
+        int normalEnemyCount =  _waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
 
-        if (waveNumber % waveSetup.BossWaveInterval == 0) // Boss wave
+        if (waveNumber % _waveSetup.BossWaveInterval == 0) // Boss wave
         {
-            weakEnemyCount = waveSetup.BossWaveWeakEnemies + (waveNumber - 1) * waveSetup.EnemyIncrementPerWave;
-            normalEnemyCount = waveSetup.BossWaveNormalEnemies + (waveNumber - 1) * waveSetup.EnemyIncrementPerWave;
+            weakEnemyCount = _waveSetup.BossWaveWeakEnemies + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
+            normalEnemyCount = _waveSetup.BossWaveNormalEnemies + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
 
-            Vector3 bossPosition = GetRandomPositionAround(spawnPoint.position, waveSetup.MinSpawnRadius, waveSetup.MaxSpawnRadius);
-            ObjectPool.SpawnObject(bossEnemySO.EnemyPrefab, bossPosition, Quaternion.identity);
+            Vector3 bossPosition = GetRandomPositionAround(_spawnPoint.position, _waveSetup.MinSpawnRadius, _waveSetup.MaxSpawnRadius);
+            ObjectPool.SpawnObject(_bossEnemySO.EnemyPrefab, bossPosition, Quaternion.identity);
         }
 
         for (int i = 0; i < weakEnemyCount; i++)
         {
-            Vector3 weakEnemyPosition = GetRandomPositionAround(spawnPoint.position, waveSetup.MinSpawnRadius, waveSetup.MaxSpawnRadius);
-            ObjectPool.SpawnObject(weakEnemySO.EnemyPrefab, weakEnemyPosition, Quaternion.identity);
+            Vector3 weakEnemyPosition = GetRandomPositionAround(_spawnPoint.position, _waveSetup.MinSpawnRadius, _waveSetup.MaxSpawnRadius);
+            ObjectPool.SpawnObject(_weakEnemySO.EnemyPrefab, weakEnemyPosition, Quaternion.identity);
         }
 
         for (int i = 0; i < normalEnemyCount; i++)
         {
-            Vector3 normalEnemyPosition = GetRandomPositionAround(spawnPoint.position, waveSetup.MinSpawnRadius, waveSetup.MaxSpawnRadius);
-            ObjectPool.SpawnObject(normalEnemySO.EnemyPrefab, normalEnemyPosition, Quaternion.identity);
+            Vector3 normalEnemyPosition = GetRandomPositionAround(_spawnPoint.position, _waveSetup.MinSpawnRadius, _waveSetup.MaxSpawnRadius);
+            ObjectPool.SpawnObject(_normalEnemySO.EnemyPrefab, normalEnemyPosition, Quaternion.identity);
         }
     }
 

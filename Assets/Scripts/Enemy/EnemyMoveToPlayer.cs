@@ -3,18 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 public class EnemyMoveToPlayer : MonoBehaviour
 {
     private Transform playerTransform;
-    private NavMeshAgent navMeshAgent;
+    [SerializeField] private NavMeshAgent _agent;
     private IGameFactory _gameFactory;
     
     [SerializeField] private float _minDistance;
-    private void Awake()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
 
     private void Start()
     {
@@ -29,12 +26,12 @@ public class EnemyMoveToPlayer : MonoBehaviour
     private void Update()
     {
         if(PlayerInitialized() && PlayerNotReached())
-            navMeshAgent.SetDestination(playerTransform.position);
+            _agent.destination = playerTransform.position;
     }
 
     private void PlayerCreated() => InitializePlayerTranform();
     private void InitializePlayerTranform() => playerTransform = _gameFactory.PlayerObject.transform;
     private bool PlayerInitialized() => playerTransform != null;
     private bool PlayerNotReached() =>
-        Vector3.Distance(navMeshAgent.transform.position, playerTransform.position) >= _minDistance;
+        Vector3.Distance(_agent.transform.position, playerTransform.position) >= _minDistance;
 }

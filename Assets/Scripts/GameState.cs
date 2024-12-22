@@ -17,7 +17,7 @@ public enum State
 public class GameState : MonoBehaviour
 {
     [SerializeField] private Button _playBtn;
-    [SerializeField] private GameObject _menuScreen;
+    [SerializeField] private GameObject _menuScreen, _upradeScreen, _finishScreen;
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private GameObject _blockerImg;
 
@@ -44,7 +44,7 @@ public class GameState : MonoBehaviour
         }
     }
 
-    private void ChangeState(State newState)
+    public void ChangeState(State newState)
     {
         CurrentState = newState;
 
@@ -66,11 +66,11 @@ public class GameState : MonoBehaviour
                 break;
 
             case State.Finish:
-                // Handle Finish state here
+                _finishScreen.SetActive(true);
                 break;
 
             case State.Upgrade:
-                // Handle Upgrade state here
+                _upradeScreen.SetActive(true);
                 break;
         }
     }

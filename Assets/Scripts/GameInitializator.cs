@@ -15,11 +15,8 @@ public class GameInitializer : MonoBehaviour
 
     private void Start()
     {
-        if (_waveSystem == null) Debug.LogError("WaveSystem is not injected!");
-    
         _mainGame.OnGameStateEntered += _waveSystem.StartNextWave;
     }
-
 
     private void OnDestroy()
     {
