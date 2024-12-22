@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 2746691513504700250}
   - component: {fileID: 139966569753220660}
   - component: {fileID: 5904376042800807449}
+  - component: {fileID: 6136597530912146605}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -390,6 +391,18 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
+--- !u!114 &6136597530912146605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960529259623592032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058291059d846c241be6fe0d52a458b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4949932929223706187
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +420,8 @@ GameObject:
   - component: {fileID: 949256274329950592}
   - component: {fileID: 3381173812182122629}
   - component: {fileID: 2780816936679830911}
+  - component: {fileID: 2765879019011431711}
+  - component: {fileID: 4775319576150199487}
   m_Layer: 0
   m_Name: NormalEnemy
   m_TagString: Untagged
@@ -599,6 +614,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attack: {fileID: 3381173812182122629}
   _triggerObserver: {fileID: 4822800479153658337}
+--- !u!114 &2765879019011431711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949932929223706187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95361d0a031ad9d4f9a6c7c9bba633ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemySO: {fileID: 11400000, guid: 909d07a99a56cd442a6e1b98754449b5, type: 2}
+--- !u!114 &4775319576150199487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949932929223706187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df72731769f38742a1af0805ccadc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpBar: {fileID: 3270001948587994783}
 --- !u!1 &7701432282966268842
 GameObject:
   m_ObjectHideFlags: 0

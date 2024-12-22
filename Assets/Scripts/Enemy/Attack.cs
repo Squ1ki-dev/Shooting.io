@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +43,7 @@ public class Attack : MonoBehaviour
         {
             PhysicsDebug.DrawDebug(attackPoint.position, Cleavage, 3);
             Debug.Log($"Hit Player: {hit.name}");
+            hit.transform.GetComponent<IHealth>().TakeDamage(enemySO.DamageValue);
         }
     }
 
@@ -105,15 +105,15 @@ public class Attack : MonoBehaviour
 }
 
 
-    // private void OnAttackEnded()
-    // {
-    //     _attackCooldown = enemySO.AttackCooldown;
-    //     _isAttacking = false;
-    // }
-    
+// private void OnAttackEnded()
+// {
+//     _attackCooldown = enemySO.AttackCooldown;
+//     _isAttacking = false;
+// }
 
-        // private void OnAttack()
-    // {
-    //     if(Hit(out Collider hit))
-    //         PhysicsDebug.DrawDebug(attackPoint.position, Cleavage, 3);
-    // }
+
+// private void OnAttack()
+// {
+//     if(Hit(out Collider hit))
+//         PhysicsDebug.DrawDebug(attackPoint.position, Cleavage, 3);
+// }

@@ -25,7 +25,6 @@ public class WaveSystem : MonoBehaviour
 
     private void Start()
     {
-        // Ensure the PlayerPrefs value is set if it doesn't exist
         if (!PlayerPrefs.HasKey("WaveNumber"))
         {
             PlayerPrefs.SetInt("WaveNumber", currentWave);
@@ -46,7 +45,7 @@ public class WaveSystem : MonoBehaviour
             if (waveTime <= 0)
             {
                 waveActive = false;
-                _mainGame.ChangeState(State.Finish);
+                _mainGame.ChangeState(GameStates.Finish);
                 _timerText.gameObject.SetActive(false);
             }
         }

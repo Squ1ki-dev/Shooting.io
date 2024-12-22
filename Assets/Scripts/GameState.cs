@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum State
+public enum GameStates
 {
     None,
     Menu,
@@ -17,59 +17,55 @@ public enum State
 public class GameState : MonoBehaviour
 {
     [SerializeField] private Button _playBtn;
-    [SerializeField] private GameObject _menuScreen, _upradeScreen, _finishScreen;
+    [SerializeField] private GameObject _menuScreen, _upradeScreen, _finishScreen, _loseScreen;
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private GameObject _blockerImg;
 
-    public State CurrentState = State.None;
+    public GameStates CurrentState = GameStates.None;
     public Action OnGameStateEntered;
 
     private void Start()
     {
-        CurrentState = State.Menu;
+        CurrentState = GameStates.Menu;
 
-        // Set up initial UI state
         _menuScreen.SetActive(true);
         _blockerImg.SetActive(false);
 
-        // Subscribe to play button click
         _playBtn.onClick.AddListener(OnPlayButtonPressed);
     }
 
     private void OnPlayButtonPressed()
     {
-        if (CurrentState == State.Menu)
-        {
-            ChangeState(State.Game);
-        }
+        if (CurrentState == GameStates.Menu)
+            ChangeState(GameStates.Game);
     }
 
-    public void ChangeState(State newState)
+    public void ChangeState(GameStates newState)
     {
         CurrentState = newState;
 
         switch (CurrentState)
         {
-            case State.Menu:
+            case GameStates.Menu:
                 _menuScreen.SetActive(true);
                 _blockerImg.SetActive(false);
                 break;
 
-            case State.Game:
+            case GameStates.Game:
                 _menuScreen.SetActive(false);
                 _blockerImg.SetActive(true);
                 StartCoroutine(StartGameCountdown());
                 break;
 
-            case State.Lose:
-                // Handle Lose state here
-                break;
-
-            case State.Finish:
+            case GameStates.Lose:
                 _finishScreen.SetActive(true);
                 break;
 
-            case State.Upgrade:
+            case GameStates.Finish:
+                _finishScreen.SetActive(true);
+                break;
+
+            case GameStates.Upgrade:
                 _upradeScreen.SetActive(true);
                 break;
         }
