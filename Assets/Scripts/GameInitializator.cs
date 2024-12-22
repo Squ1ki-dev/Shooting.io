@@ -3,11 +3,11 @@ using Zenject;
 
 public class GameInitializer : MonoBehaviour
 {
-    private MainGame _mainGame;
+    private GameState _mainGame;
     private WaveSystem _waveSystem;
 
     [Inject]
-    private void Construct(MainGame mainGame, WaveSystem waveSystem)
+    private void Construct(GameState mainGame, WaveSystem waveSystem)
     {
         _mainGame = mainGame;
         _waveSystem = waveSystem;
@@ -17,12 +17,12 @@ public class GameInitializer : MonoBehaviour
     {
         if (_waveSystem == null) Debug.LogError("WaveSystem is not injected!");
     
-        _mainGame.OnGameStateEntered += _waveSystem.StartWave;
+        _mainGame.OnGameStateEntered += _waveSystem.StartNextWave;
     }
 
 
     private void OnDestroy()
     {
-        _mainGame.OnGameStateEntered -= _waveSystem.StartWave;
+        _mainGame.OnGameStateEntered -= _waveSystem.StartNextWave;
     }
 }

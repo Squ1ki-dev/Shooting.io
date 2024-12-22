@@ -14,7 +14,7 @@ public enum State
     Upgrade
 }
 
-public class MainGame : MonoBehaviour
+public class GameState : MonoBehaviour
 {
     [SerializeField] private Button _playBtn;
     [SerializeField] private GameObject _menuScreen;

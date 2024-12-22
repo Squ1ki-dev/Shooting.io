@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameFactory : IGameFactory
 {
     private readonly IAssets _assets;
-    private MainGame _mainGame;
 
     public event Action PlayerCreated;
     public GameObject PlayerObject{ get; private set; }

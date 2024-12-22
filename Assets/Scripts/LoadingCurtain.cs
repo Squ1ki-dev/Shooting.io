@@ -29,6 +29,5 @@ public class LoadingCurtain : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        _gameFactory.CreateHud();
     }
 }

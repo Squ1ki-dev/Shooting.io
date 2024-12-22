@@ -4,7 +4,7 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    public MainGame _game;
+    public GameState _game;
     public GameInitializer gameInitializerPrefab;
     public HUDService _hudService;
     public WaveSystem _waveSystem; 
@@ -35,7 +35,7 @@ public class GameInstaller : MonoInstaller
     private void BindGame()
     {
         Container
-            .Bind<MainGame>()
+            .Bind<GameState>()
             .FromInstance(_game)
             .AsSingle();
 
