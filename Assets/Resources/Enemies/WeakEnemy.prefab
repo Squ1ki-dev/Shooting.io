@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4388042578480680923}
   - component: {fileID: 3014223286054371119}
   - component: {fileID: 6458959235968042572}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Current
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 7570970459884897145}
   - component: {fileID: 2237906994112975162}
   - component: {fileID: 88654971860342408}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +240,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imageCurrent: {fileID: 6458959235968042572}
+--- !u!1 &1890961485078708330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4061753895788974635}
+  - component: {fileID: 7811085705805270952}
+  m_Layer: 8
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4061753895788974635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890961485078708330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3943593809529329966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7811085705805270952
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890961485078708330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7574457, y: 2.0049627, z: 1.8472824}
+  m_Center: {x: -0.05209297, y: 0.10004851, z: -0.04559517}
 --- !u!1 &2178995809178913322
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +370,7 @@ GameObject:
   - component: {fileID: 8753250244507963516}
   - component: {fileID: 577564522033522178}
   - component: {fileID: 6752599972183214687}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,6 +452,7 @@ GameObject:
   - component: {fileID: 3222039370765193636}
   - component: {fileID: 1715329576024010101}
   - component: {fileID: 5981220229017255960}
+  - component: {fileID: 8036280554652469076}
   m_Layer: 0
   m_Name: WeakEnemy
   m_TagString: Untagged
@@ -423,6 +477,7 @@ Transform:
   - {fileID: 256347786218280055}
   - {fileID: 7852960976661371838}
   - {fileID: 3119616375869709846}
+  - {fileID: 4061753895788974635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3610303739105458441
@@ -550,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2996c966e28644d9fbd3879d0c1829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cleavage: 3
+  Cleavage: 0.5
   AttackDuration: 0.5
   enemySO: {fileID: 11400000, guid: 856ef25846af15c4eaa66c77e3f5602f, type: 2}
   attackPoint: {fileID: 7852960976661371838}
@@ -566,8 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195b0b85077f51046b52d9fc680ee269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TriggerObserver: {fileID: 6265501631956280291}
   _attack: {fileID: 7895861126810448888}
-  _triggerObserver: {fileID: 6265501631956280291}
 --- !u!114 &1715329576024010101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +649,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 88654971860342408}
+--- !u!114 &8036280554652469076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949932929223706187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2780c0be8b9834f46aa0a54766858a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1715329576024010101}
 --- !u!1 &5131699126918504662
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +705,7 @@ GameObject:
   - component: {fileID: 1572485341482625678}
   - component: {fileID: 4789764804361800641}
   - component: {fileID: 2075675092434935665}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

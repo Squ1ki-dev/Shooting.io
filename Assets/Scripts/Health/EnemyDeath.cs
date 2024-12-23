@@ -25,7 +25,6 @@ public class EnemyDeath : MonoBehaviour
 
         //Instantiate(deathFx, transform.position, Quaternion.identity);
         ObjectPool.ReturnToPool(gameObject);
-
         Happened?.Invoke();
     }
 }

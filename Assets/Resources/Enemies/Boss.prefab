@@ -578,8 +578,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195b0b85077f51046b52d9fc680ee269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TriggerObserver: {fileID: 7331326233826599034}
   _attack: {fileID: 2062534686035510690}
-  _triggerObserver: {fileID: 7331326233826599034}
 --- !u!114 &3709943052556927664
 MonoBehaviour:
   m_ObjectHideFlags: 0

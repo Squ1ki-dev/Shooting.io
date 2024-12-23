@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject.SpaceFighter;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerMove playerMove;
     private GameState gameState;
     //[SerializeField] private GameObject deathFx;
@@ -35,6 +37,7 @@ public class PlayerDeath : MonoBehaviour
     {
         _isDead = true;
         playerMove.enabled = false;
+        playerAttack.enabled = false;
         gameState.ChangeState(GameStates.Lose);
         //Instantiate(deathFx, transform.position, Quaternion.identity);
     }

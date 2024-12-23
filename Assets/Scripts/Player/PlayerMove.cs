@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour
 {
-    public float MovementSpeed;
-
+    [SerializeField] private PlayerStatsSO playerConfig;
     private CharacterController _characterController;
     private IInputService _inputService;
     private Camera _camera;
@@ -14,7 +13,6 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         _inputService = AllServices.Container.Single<IInputService>();
-
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -38,6 +36,6 @@ public class PlayerMove : MonoBehaviour
 
         movementVector += Physics.gravity;
         
-        _characterController.Move(MovementSpeed * movementVector * Time.deltaTime);
+        _characterController.Move(playerConfig.Speed * movementVector * Time.deltaTime);
     }
 }

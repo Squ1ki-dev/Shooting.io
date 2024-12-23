@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private float Cleavage; // Radius of attack
     [SerializeField] private float AttackDuration = 0.5f; // Time for one attack to finish
