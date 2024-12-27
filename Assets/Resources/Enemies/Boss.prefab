@@ -263,6 +263,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3943593809529329966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3771073970567770941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6221101806995781424}
+  - component: {fileID: 7896483158814557964}
+  m_Layer: 0
+  m_Name: LootSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6221101806995781424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771073970567770941}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3943593809529329966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7896483158814557964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771073970567770941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6203602e42b058f46b21e0e78975b05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyDeath: {fileID: 8193491155596323017}
+  lootObj: {fileID: 8174598692454253580, guid: 0ed836af82c79d04e84f430e533fbad4, type: 3}
 --- !u!1 &4753274505353151060
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +434,7 @@ GameObject:
   - component: {fileID: 3709943052556927664}
   - component: {fileID: 573088365559819437}
   - component: {fileID: 8193491155596323017}
+  - component: {fileID: 7253814752171856634}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -408,6 +455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6221101806995781424}
   - {fileID: 5570463324872761442}
   - {fileID: 1924426803855871978}
   - {fileID: 855771533860831840}
@@ -548,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba4e6fc85d0dc54c82069b9cb52b50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 3484371507964296973}
   _minDistance: 1
+  _agent: {fileID: 3484371507964296973}
 --- !u!114 &2062534686035510690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,6 +667,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 3709943052556927664}
+--- !u!114 &7253814752171856634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949932929223706187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2b6b22ea50e8344be89018600d197a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyMove: {fileID: 949256274329950592}
+  _enemyAttack: {fileID: 2062534686035510690}
 --- !u!1 &8582567658725609300
 GameObject:
   m_ObjectHideFlags: 0

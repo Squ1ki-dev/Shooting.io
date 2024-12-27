@@ -1,20 +1,23 @@
 using System;
 using UnityEngine;
 using Zenject;
+using CodeBase.UI.Elements;
+using CodeBase.Wave;
 
 public class GameInstaller : MonoInstaller
 {
     public GameState _game;
-    public GameInitializer gameInitializerPrefab;
+    public WaveInitializer gameInitializerPrefab;
     public HUDService _hudService;
     public WaveSystem _waveSystem;
-    private EnemyMoveToPlayer enemyMoveToPlayer;
+    public PanelManager _panelManager;
 
     public override void InstallBindings()
     {
         BindGame();
         BindHUD();
         BindWave();
+        BindUI();
     }
 
     private void BindWave()
@@ -22,6 +25,14 @@ public class GameInstaller : MonoInstaller
         Container
             .Bind<WaveSystem>()
             .FromInstance(_waveSystem)
+            .AsSingle();
+    }
+
+    private void BindUI()
+    {
+        Container
+            .Bind<PanelManager>()
+            .FromInstance(_panelManager)
             .AsSingle();
     }
 
@@ -41,7 +52,7 @@ public class GameInstaller : MonoInstaller
             .AsSingle();
 
         Container
-            .Bind<GameInitializer>()
+            .Bind<WaveInitializer>()
             .FromInstance(gameInitializerPrefab)
             .AsSingle();
     }

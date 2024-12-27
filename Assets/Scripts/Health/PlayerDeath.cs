@@ -2,21 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject.SpaceFighter;
+using CodeBase.Player;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerMove playerMove;
-    private GameState gameState;
+    private GameState _gameState;
     //[SerializeField] private GameObject deathFx;
     private bool _isDead;
 
     private void Start()
     {
-        gameState = FindObjectOfType<GameState>();
-        if (gameState == null)
+        _gameState = FindObjectOfType<GameState>();
+        if (_gameState == null)
             Debug.LogError("GameState not found in the scene!");
 
         playerHealth.HealthChanged += HealthChanged;
@@ -38,7 +38,7 @@ public class PlayerDeath : MonoBehaviour
         _isDead = true;
         playerMove.enabled = false;
         playerAttack.enabled = false;
-        gameState.ChangeState(GameStates.Lose);
+        _gameState.ChangeState(GameStates.Lose);
         //Instantiate(deathFx, transform.position, Quaternion.identity);
     }
 }

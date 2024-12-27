@@ -3,36 +3,39 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class ObstacleGenerator : MonoBehaviour
+namespace CodeBase.ProceduralMap
 {
-    [SerializeField] private Transform parentObject;
-    [SerializeField] private ObstacleListSO obstacleListSO;
-    [SerializeField] private int numItemsToSpawn;
-
-    [SerializeField] private float itemXSpread, itemZSpread;
-
-    private void Start()
+    public class ObstacleGenerator : MonoBehaviour
     {
-        for (int i = 0; i < numItemsToSpawn; i++)
+        [SerializeField] private Transform parentObject;
+        [SerializeField] private ObstacleListSO obstacleListSO;
+        [SerializeField] private int numItemsToSpawn;
+
+        [SerializeField] private float itemXSpread, itemZSpread;
+
+        private void Start()
         {
-            PickItem();
+            for (int i = 0; i < numItemsToSpawn; i++)
+            {
+                PickItem();
+            }
         }
-    }
 
-    private void PickItem()
-    {
-        int randomIndex = Random.Range(0, obstacleListSO.items.Count);
+        private void PickItem()
+        {
+            int randomIndex = Random.Range(0, obstacleListSO.items.Count);
 
-        AssetReference assetReference = obstacleListSO.items[randomIndex];
-        assetReference.InstantiateAsync(SpreadItems(), Quaternion.identity, parentObject).Completed += OnItemInstantiated;
-    }
+            AssetReference assetReference = obstacleListSO.items[randomIndex];
+            assetReference.InstantiateAsync(SpreadItems(), Quaternion.identity, parentObject).Completed += OnItemInstantiated;
+        }
 
-    private Vector3 SpreadItems() =>
-        new Vector3(Random.Range(-itemXSpread, itemXSpread), 0, Random.Range(-itemZSpread, itemZSpread)) + transform.position;
+        private Vector3 SpreadItems() =>
+            new Vector3(Random.Range(-itemXSpread, itemXSpread), 0, Random.Range(-itemZSpread, itemZSpread)) + transform.position;
 
-    private void OnItemInstantiated(AsyncOperationHandle<GameObject> obj)
-    {
-        if (obj.Status != AsyncOperationStatus.Succeeded)
-            Debug.LogError("Failed to load item.");
+        private void OnItemInstantiated(AsyncOperationHandle<GameObject> obj)
+        {
+            if (obj.Status != AsyncOperationStatus.Succeeded)
+                Debug.LogError("Failed to load item.");
+        }
     }
 }

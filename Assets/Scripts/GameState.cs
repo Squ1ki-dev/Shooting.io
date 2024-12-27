@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Zenject;
 
 public enum GameStates
 {
@@ -17,18 +18,27 @@ public enum GameStates
 public class GameState : MonoBehaviour
 {
     [SerializeField] private Button _playBtn;
-    [SerializeField] private GameObject _menuScreen, _upradeScreen, _finishScreen, _loseScreen;
+    [SerializeField] private int _menuIndex, _upradeIndex, _finishIndex, _loseIndex;
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private GameObject _blockerImg;
 
+    private PanelManager _panelManager;
+
     public GameStates CurrentState = GameStates.None;
     public Action OnGameStateEntered;
+
+    [Inject]
+    private void Construct(PanelManager panelManager)
+    {
+        _panelManager = panelManager;
+    }
 
     private void Start()
     {
         CurrentState = GameStates.Menu;
 
-        _menuScreen.SetActive(true);
+        _panelManager.OpenPanelByIndex(_menuIndex);
+        //_menuScreen.SetActive(true);
         _blockerImg.SetActive(false);
 
         _playBtn.onClick.AddListener(OnPlayButtonPressed);
@@ -47,26 +57,28 @@ public class GameState : MonoBehaviour
         switch (CurrentState)
         {
             case GameStates.Menu:
-                _menuScreen.SetActive(true);
+                _panelManager.OpenPanelByIndex(_menuIndex);
+                //_menuScreen.SetActive(true);
                 _blockerImg.SetActive(false);
                 break;
 
             case GameStates.Game:
-                _menuScreen.SetActive(false);
+                _panelManager.CloseAllPanels();
+                //_menuScreen.SetActive(false);
                 _blockerImg.SetActive(true);
                 StartCoroutine(StartGameCountdown());
                 break;
 
+            case GameStates.Upgrade:
+                _panelManager.OpenPanelByIndex(_upradeIndex);
+                break;
+
             case GameStates.Lose:
-                _finishScreen.SetActive(true);
+                _panelManager.OpenPanelByIndex(_loseIndex);
                 break;
 
             case GameStates.Finish:
-                _finishScreen.SetActive(true);
-                break;
-
-            case GameStates.Upgrade:
-                _upradeScreen.SetActive(true);
+                _panelManager.OpenPanelByIndex(_finishIndex);
                 break;
         }
     }

@@ -35,4 +35,5 @@ public class GameFactory : IGameFactory
         GameObject gameObject = _assets.Instantiate(AssetPath.HudPath);
         return gameObject;
     }
+    
 }

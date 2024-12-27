@@ -7,11 +7,8 @@ public class LoadingCurtain : MonoBehaviour
     public CanvasGroup Curtain;
     private readonly IGameFactory _gameFactory;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-    
+    private void Awake() => DontDestroyOnLoad(this);
+
     public void Show()
     {
         gameObject.SetActive(true);

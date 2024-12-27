@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "ObstacleListSO", menuName = "ScriptableObjects/ObstacleListSO")]
-public class ObstacleListSO : ScriptableObject
+namespace CodeBase.ProceduralMap
 {
-    public List<AssetReference> items = new List<AssetReference>();
+    [CreateAssetMenu(fileName = "ObstacleListSO", menuName = "ScriptableObjects/ObstacleListSO")]
+    public class ObstacleListSO : ScriptableObject
+    {
+        public List<AssetReference> items = new List<AssetReference>();
+    }
 }

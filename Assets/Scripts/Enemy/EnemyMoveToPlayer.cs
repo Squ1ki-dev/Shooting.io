@@ -8,14 +8,15 @@ using Zenject;
 public class EnemyMoveToPlayer : MonoBehaviour
 {
     private Transform playerTransform;
+    [SerializeField] private float _minDistance;
     [SerializeField] private NavMeshAgent _agent;
     private IGameFactory _gameFactory;
+    private GameState _gameState;
     
-    [SerializeField] private float _minDistance;
-
     private void Start()
     {
         _gameFactory = AllServices.Container.Single<IGameFactory>();
+        _gameState = FindObjectOfType<GameState>();
 
         if(_gameFactory.PlayerObject != null)
             InitializePlayerTranform();
@@ -25,6 +26,12 @@ public class EnemyMoveToPlayer : MonoBehaviour
 
     private void Update()
     {
+        if(_gameState.CurrentState != GameStates.Game)
+        {
+            this.enabled = false;
+            _agent.speed = 0;
+        }
+
         if(PlayerInitialized() && PlayerNotReached())
             _agent.destination = playerTransform.position;
     }
