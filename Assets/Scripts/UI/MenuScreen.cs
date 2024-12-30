@@ -7,6 +7,8 @@ using Zenject;
 public class MenuScreen : WindowBase
 {
     [SerializeField] private Button _playBtn;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private Canvas canvas;
 
     private GameState _gameState;
 
@@ -21,6 +23,10 @@ public class MenuScreen : WindowBase
     private void OnPlayButtonPressed()
     {
         if (_gameState.CurrentState == GameStates.Menu)
+        {
             _gameState.ChangeState(GameStates.Game);
+            _camera.gameObject.SetActive(false);
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        }
     }
 }
