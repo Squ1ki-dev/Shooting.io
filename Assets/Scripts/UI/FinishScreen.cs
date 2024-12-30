@@ -27,7 +27,6 @@ public class FinishScreen : WindowBase
     private void NextWave()
     {
         _waveSystem.StartNextWave();
-        _panelManager.CloseAllPanels();
         SceneManager.LoadScene(Init);
     }
 

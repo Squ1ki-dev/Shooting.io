@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 1
   Speed: 4
-  AttackRange: 10
+  AttackRange: 1.5
   AttackSpeed: 0.5
   Damage: 20
   AttackCooldownDuration: 0.5

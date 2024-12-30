@@ -10,6 +10,10 @@ public class UpgradeScreen : WindowBase
     [SerializeField] private PlayerStatsSO _playerConfig;
     private PanelManager _panelManager;
     private GameState _gameState;
+    
+    private const float _rangeGrowth = 0.05f;
+    private const float _damageGrowth = 0.10f;
+    private const float _movementSpeedGrowth = 0.02f;
 
     [Inject]
     private void Construct(GameState gameState, PanelManager panelManager)
@@ -27,20 +31,19 @@ public class UpgradeScreen : WindowBase
 
     private void IncreaseRange()
     {
-        _playerConfig.AttackRange += _playerConfig.AttackRange + 10;
-        _panelManager.CloseAllPanels();
-        _gameState.ChangeState(GameStates.Game);
+        _playerConfig.AttackRange = CalculateStat(_playerConfig.AttackRange, _rangeGrowth, _playerConfig.Level);
+        ContinueGame();
     }
 
     private void IncreasePower()
     {
-        _playerConfig.Damage += _playerConfig.Damage + 10;
+        _playerConfig.Damage = CalculateStat(_playerConfig.Damage, _damageGrowth, _playerConfig.Level);
         ContinueGame();
     }
 
     private void IncreaseSpeed()
     {
-        _playerConfig.Speed += _playerConfig.Speed + 2;
+        _playerConfig.Speed = CalculateStat(_playerConfig.Speed, _movementSpeedGrowth, _playerConfig.Level);
         ContinueGame();
     }
 
@@ -48,5 +51,10 @@ public class UpgradeScreen : WindowBase
     {
         _panelManager.CloseAllPanels();
         _gameState.ChangeState(GameStates.Game);
+    }
+
+    private float CalculateStat(float baseValue, float growthRate, int level)
+    {
+        return baseValue * Mathf.Pow(1 + growthRate, level - 1);
     }
 }

@@ -55,7 +55,7 @@ namespace CodeBase.Player
         {
             for (int i = 0; i < Hit(); i++)
             {
-                _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(15);
+                _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(playerConfig.Damage);
                 Debug.Log($"Hit {_hits[i].name}");
             }
         }
@@ -85,14 +85,14 @@ namespace CodeBase.Player
         private bool CanAttack() => _attackIsActive && !_isAttacking && CooldownIsUp();
 
         private int Hit() =>
-            Physics.OverlapBoxNonAlloc(attackPoint.position, boxSize / 2, _hits, Quaternion.identity, _layerMask);
+            Physics.OverlapSphereNonAlloc(attackPoint.position, playerConfig.AttackRange, _hits, _layerMask);
 
         private void OnDrawGizmos()
         {
             if (attackPoint != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawWireCube(attackPoint.position, boxSize);
+                Gizmos.DrawWireSphere(attackPoint.position, playerConfig.AttackRange);
             }
         }
     }
