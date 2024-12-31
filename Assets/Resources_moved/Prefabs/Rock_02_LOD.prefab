@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1244650541685138}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,7 +135,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.1857743, y: 4.0006514, z: 2.3158984}
-  m_Center: {x: 0.0056889653, y: -0.049085617, z: -0.019778728}
+  m_Center: {x: 0.0056889653, y: 2.02, z: -0.019778728}
 --- !u!1 &1353984092723292
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 1353984092723292}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,7 +265,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578408544823600}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_LocalReferencePoint: {x: 0, y: 2, z: 0}
   m_Size: 3.8670201
   m_FadeMode: 1
   m_AnimateCrossFading: 1
@@ -298,7 +298,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.005688965, y: -0.04908562, z: -0.01977873}
+  m_Center: {x: 0.005688965, y: 2.02, z: -0.01977873}
   m_TimeToStationary: 0.5
 --- !u!114 &698228352068510076
 MonoBehaviour:
@@ -339,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 1954440437981650}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

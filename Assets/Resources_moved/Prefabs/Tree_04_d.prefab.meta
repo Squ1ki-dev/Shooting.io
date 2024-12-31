@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 0a8182889c70aff43a5dbc3a84deaccb
-labels:
-- environment
-- flower
-- grass
-- nature
-- stylized
-- trees
-- vegetation
-NativeFormatImporter:
+guid: a8d13915efab6b0438ab6514c1395cdb
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1457726869096706}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1681320264090484}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 1708742171727398}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,8 +300,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6435928, y: 1, z: 2.7061377}
-  m_Center: {x: -0.0033402443, y: 0, z: -0.002002716}
+  m_Size: {x: 2.6435928, y: 2, z: 2.7061377}
+  m_Center: {x: -0.0033402443, y: 1.35, z: -0.002002716}
 --- !u!1 &1969674256699686
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969674256699686}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.017626524, y: 0.017290771, z: -0.0044555664}
+  m_LocalReferencePoint: {x: 0.017626524, y: 0.75729084, z: -0.0044555664}
   m_Size: 2.7165685
   m_FadeMode: 1
   m_AnimateCrossFading: 1
@@ -389,9 +389,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.3217965, y: 0.5, z: 1.353069}
+  m_Extents: {x: 1.3217965, y: 1, z: 1.353069}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.003340244, y: 0, z: -0.002002716}
+  m_Center: {x: -0.003340244, y: 1.35, z: -0.002002716}
   m_TimeToStationary: 0.5

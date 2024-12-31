@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62eab16d43b8dce4991c16ba6221cd66, type: 3}
   m_Name: WaveSystem
   m_EditorClassIdentifier: 
-  BaseWeakEnemyCount: 15
+  CurrentWave: 1
+  BaseWeakEnemyCount: 25
   BaseNormalEnemyCount: 0
-  EnemyIncrementPerWave: 3
+  EnemyIncrementPerWave: 4
   BossWaveInterval: 10
   BossWaveWeakEnemies: 5
   BossWaveNormalEnemies: 3
   MinSpawnRadius: 20
-  MaxSpawnRadius: 270
+  MaxSpawnRadius: 220

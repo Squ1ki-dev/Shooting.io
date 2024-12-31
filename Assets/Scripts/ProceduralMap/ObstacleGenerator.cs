@@ -12,10 +12,8 @@ namespace CodeBase.ProceduralMap
         [SerializeField] private int numItemsToSpawn;
 
         [SerializeField] private float itemXSpread, itemZSpread;
-
         private int itemsSpawned = 0;
-
-        private void Start()
+        private void Awake()
         {
             for (int i = 0; i < numItemsToSpawn; i++)
             {

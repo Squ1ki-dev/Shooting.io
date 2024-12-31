@@ -19,7 +19,12 @@ namespace CodeBase.Enemy
 
         private void CheckGameState()
         {
-            if(_gameState.CurrentState != GameStates.Game)
+            if(_gameState.CurrentState == GameStates.Game)
+            {
+                _enemyMove.enabled = true;
+                _enemyAttack.enabled = true;
+            }
+            else
             {
                 _enemyMove.enabled = false;
                 _enemyAttack.enabled = false;

@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6188622, y: 1.2923465, z: 1.6338882}
-  m_Center: {x: -0.061437607, y: 0.1461733, z: 0.043180466}
+  m_Size: {x: 2.6188622, y: 2, z: 1.6338882}
+  m_Center: {x: -0.061437607, y: 0.9, z: 0.043180466}
 --- !u!1 &1382784298272678
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 1382784298272678}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 1694364958870170}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -246,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 1712350897759260}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,7 +348,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991033376784512}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.00000011920929, y: 0.000000059604645, z: 0}
+  m_LocalReferencePoint: {x: 0.00000011920929, y: 0.5500001, z: 0}
   m_Size: 2.5456035
   m_FadeMode: 1
   m_AnimateCrossFading: 1
@@ -377,11 +377,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.309431, y: 0.646173, z: 0.816944}
+  m_Extents: {x: 1.309431, y: 1, z: 0.816944}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.06143761, y: 0.1461733, z: 0.04318047}
+  m_Center: {x: -0.06143761, y: 0.9, z: 0.04318047}
   m_TimeToStationary: 0.5
 --- !u!114 &5782372011406187599
 MonoBehaviour:
