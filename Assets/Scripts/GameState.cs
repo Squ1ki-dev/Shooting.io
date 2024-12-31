@@ -8,7 +8,6 @@ using Zenject;
 public enum GameStates
 {
     None,
-    Menu,
     Game,
     Lose,
     Finish,
@@ -17,15 +16,12 @@ public enum GameStates
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private Button _playBtn;
-    [SerializeField] private int _menuIndex, _upradeIndex, _finishIndex, _loseIndex;
+    [SerializeField] private int _upradeIndex, _finishIndex, _loseIndex;
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private GameObject _blockerImg;
 
     private PanelManager _panelManager;
-
     public GameStates CurrentState = GameStates.None;
-    public Action OnGameStateEntered;
 
     [Inject]
     private void Construct(PanelManager panelManager)
@@ -35,19 +31,8 @@ public class GameState : MonoBehaviour
 
     private void Start()
     {
-        CurrentState = GameStates.Menu;
-
-        _panelManager.OpenPanelByIndex(_menuIndex);
-        //_menuScreen.SetActive(true);
+        StartCoroutine(StartGameCountdown());
         _blockerImg.SetActive(false);
-
-        _playBtn.onClick.AddListener(OnPlayButtonPressed);
-    }
-
-    private void OnPlayButtonPressed()
-    {
-        if (CurrentState == GameStates.Menu)
-            ChangeState(GameStates.Game);
     }
 
     public void ChangeState(GameStates newState)
@@ -56,17 +41,9 @@ public class GameState : MonoBehaviour
 
         switch (CurrentState)
         {
-            case GameStates.Menu:
-                _panelManager.OpenPanelByIndex(_menuIndex);
-                //_menuScreen.SetActive(true);
-                _blockerImg.SetActive(false);
-                break;
-
             case GameStates.Game:
                 _panelManager.CloseAllPanels();
-                //_menuScreen.SetActive(false);
                 _blockerImg.SetActive(true);
-                StartCoroutine(StartGameCountdown());
                 break;
 
             case GameStates.Upgrade:
@@ -93,10 +70,9 @@ public class GameState : MonoBehaviour
         }
 
         _countdownText.text = "GO!";
+        CurrentState = GameStates.Game;
         yield return new WaitForSeconds(1f);
         _countdownText.text = "";
         _blockerImg.SetActive(false);
-
-        OnGameStateEntered?.Invoke();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LoadingCurtain : MonoBehaviour
 {
@@ -15,16 +16,11 @@ public class LoadingCurtain : MonoBehaviour
         Curtain.alpha = 1;
     }
 
-    public void Hide() => StartCoroutine(FadeIn());
+    public void Hide() => FadeIn();
 
-    private IEnumerator FadeIn()
+    private void FadeIn()
     {
-        while(Curtain.alpha > 0)
-        {
-            Curtain.alpha -= 0.03f;
-            yield return new WaitForSeconds(0.03f);
-        }
-
-        gameObject.SetActive(false);
+        Curtain.DOFade(0f, 0.6f)
+            .OnComplete(() => gameObject.SetActive(false));
     }
 }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
 {
-    public LoadingCurtain Curtain;
+    [SerializeField] private LoadingCurtain Curtain;
     private Game _game;
 
-    private void Awake()
+    public void Run()
     {
         _game = new Game(this, Curtain);
         _game.StateMachine.Enter<BootstrapState>();
-        DontDestroyOnLoad(this);
         Application.targetFrameRate = 60;
+        DontDestroyOnLoad(this);
     }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe1af76d9a68604e90e134dd22fa06a, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  Level: 2
+  Level: 1
   Speed: 4
   AttackRange: 1.5
   AttackSpeed: 0.5
-  Damage: 7.7000003
+  Damage: 7
   AttackCooldownDuration: 0.5

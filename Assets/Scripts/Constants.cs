@@ -4,4 +4,7 @@ public static class Constants
     public const string Level = "Level";
     public const string FillAmount = "FillAmount";
     public const string WaveNumber = "WaveNumber";
+    public const string MusicVolumeParameter = "MusicVolume";
+    public const string SFXVolumeParameter = "SFXVolume";
+    public const string VibrationParameter = "VibroParam";
 }

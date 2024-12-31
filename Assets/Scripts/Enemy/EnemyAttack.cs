@@ -72,8 +72,6 @@ public class EnemyAttack : MonoBehaviour
         transform.LookAt(_playerTranfrom);
         _isAttacking = true;
         _attackTimer = AttackDuration; // Set the timer for attack duration
-
-        Debug.Log("ATTACK started!");
         OnAttack(); // Simulate attack logic
     }
 

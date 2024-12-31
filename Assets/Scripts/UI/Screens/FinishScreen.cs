@@ -10,6 +10,7 @@ public class FinishScreen : WindowBase
 {
     private const string Init = "Init";
     [SerializeField] private Button nextWaveBtn;
+    [SerializeField] private WaveSetupSO _waveConfig;
     private WaveSystem _waveSystem;
     private PanelManager _panelManager;
     private GameState _gameState;
@@ -26,9 +27,9 @@ public class FinishScreen : WindowBase
 
     private void NextWave()
     {
-        _waveSystem.StartNextWave();
+        _waveConfig.CurrentWave++;
+        PlayerPrefs.SetInt(Constants.WaveNumber, _waveConfig.CurrentWave);
+        Debug.Log($"Current Wave " + _waveConfig.CurrentWave);
         SceneManager.LoadScene(Init);
     }
-
-    private void OnDestroy() => _gameState.OnGameStateEntered -= _waveSystem.StartNextWave;
 }

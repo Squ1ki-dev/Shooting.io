@@ -13,15 +13,14 @@ namespace CodeBase.UI.Elements
         private void Start()
         {
             _gameState = FindObjectOfType<GameState>();
-            waveNumberText.text = "Wave: " + PlayerPrefs.GetInt("WaveNumber").ToString();
+            waveNumberText.text = "Wave: " + PlayerPrefs.GetInt(Constants.WaveNumber).ToString();
 
-            if(_gameState.CurrentState == GameStates.Menu)
-                gameObjectToDisable.SetActive(false);
-            else
-                gameObjectToDisable.SetActive(true);
+            CheckForValidState();
         }
 
-        private void Update()
+        private void Update() => CheckForValidState();
+
+        private void CheckForValidState()
         {
             if(_gameState.CurrentState == GameStates.Game)
                 gameObjectToDisable.SetActive(true);

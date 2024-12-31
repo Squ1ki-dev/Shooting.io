@@ -69,7 +69,7 @@ namespace CodeBase.Wave
 
             meshCombiner.CreateMultiMaterialMesh = true;
             meshCombiner.DestroyCombinedChildren = true;
-            //meshCombiner.GenerateUVMap = true;
+
             meshCombiner.CombineMeshes(false);
         }
 
