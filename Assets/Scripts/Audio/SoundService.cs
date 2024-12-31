@@ -43,7 +43,7 @@ namespace CodeBase.UI.Audio
             PlayerPrefs.SetInt(Constants.VibrationParameter, isOn ? 1 : 0);
 
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
-                HapticFeedback.LightFeedback();
+                HapticFeedback.MediumFeedback();
         }
     }
 }

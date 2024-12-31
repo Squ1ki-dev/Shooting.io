@@ -28617,8 +28617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ef3f51034a8454288c21497a6cdf6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaveBtn: {fileID: 503629872}
-  exitBtn: {fileID: 1459184926}
+  _nextWaveBtn: {fileID: 0}
+  _exitBtn: {fileID: 0}
   _waveConfig: {fileID: 11400000, guid: d771e9a01ab5ec84f90c761be51c3c5b, type: 2}
 --- !u!1 &941960390
 GameObject:
@@ -41355,7 +41355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 1624479722}
   obstacleListSO: {fileID: 11400000, guid: c79a660a75d8c25418c0aeed1ea43df9, type: 2}
-  numItemsToSpawn: 1000
+  numItemsToSpawn: 1200
   itemXSpread: 245
   itemZSpread: 245
 --- !u!1 &1626256512

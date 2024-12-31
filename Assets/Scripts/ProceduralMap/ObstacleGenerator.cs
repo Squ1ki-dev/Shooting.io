@@ -13,8 +13,11 @@ namespace CodeBase.ProceduralMap
 
         [SerializeField] private float itemXSpread, itemZSpread;
         private int itemsSpawned = 0;
+
+        private MeshCombiner _meshCombiner;
         private void Awake()
         {
+            _meshCombiner = parentObject.gameObject.AddComponent<MeshCombiner>();
             for (int i = 0; i < numItemsToSpawn; i++)
             {
                 PickItem();
@@ -45,11 +48,9 @@ namespace CodeBase.ProceduralMap
 
         private void CombineMeshes()
         {
-            MeshCombiner meshCombiner = parentObject.gameObject.AddComponent<MeshCombiner>();
-
-            meshCombiner.CreateMultiMaterialMesh = true;
-            meshCombiner.DestroyCombinedChildren = true;
-            meshCombiner.CombineMeshes(false);
+            _meshCombiner.CreateMultiMaterialMesh = true;
+            _meshCombiner.DestroyCombinedChildren = true;
+            _meshCombiner.CombineMeshes(false);
         }
 
         private Vector3 SpreadItems() =>
