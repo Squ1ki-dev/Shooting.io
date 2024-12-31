@@ -9,7 +9,7 @@ using CodeBase.Wave;
 public class FinishScreen : WindowBase
 {
     private const string Init = "Init";
-    [SerializeField] private Button nextWaveBtn;
+    [SerializeField] private Button nextWaveBtn, exitBtn;
     [SerializeField] private WaveSetupSO _waveConfig;
     private WaveSystem _waveSystem;
     private PanelManager _panelManager;
@@ -23,7 +23,11 @@ public class FinishScreen : WindowBase
         _panelManager = panelManager;
     }
 
-    private void Start() => nextWaveBtn.onClick.AddListener(NextWave);
+    private void Start() 
+    {
+        nextWaveBtn.onClick.AddListener(NextWave);
+        exitBtn.onClick.AddListener(NextWave);
+    }
 
     private void NextWave()
     {

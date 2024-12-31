@@ -8,7 +8,12 @@ using UnityEngine.SceneManagement;
 public class LoseScreen : WindowBase
 {
     private const string Init = "Init";
-    [SerializeField] private Button _restartBtn;
-    private void Start() => _restartBtn.onClick.AddListener(Restart);
+    [SerializeField] private Button _restartBtn, _exitBtn;
+    private void Start() 
+    {
+        _restartBtn.onClick.AddListener(Restart);
+        _exitBtn.onClick.AddListener(Restart);
+    }
+
     private void Restart() => SceneManager.LoadScene(Init);
 }

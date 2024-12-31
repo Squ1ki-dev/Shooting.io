@@ -28618,6 +28618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaveBtn: {fileID: 503629872}
+  exitBtn: {fileID: 1459184926}
   _waveConfig: {fileID: 11400000, guid: d771e9a01ab5ec84f90c761be51c3c5b, type: 2}
 --- !u!1 &941960390
 GameObject:
@@ -35010,6 +35011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _restartBtn: {fileID: 1563951501}
+  _exitBtn: {fileID: 410890331}
 --- !u!1 &1365865895
 GameObject:
   m_ObjectHideFlags: 0
@@ -41353,7 +41355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 1624479722}
   obstacleListSO: {fileID: 11400000, guid: c79a660a75d8c25418c0aeed1ea43df9, type: 2}
-  numItemsToSpawn: 500
+  numItemsToSpawn: 750
   itemXSpread: 245
   itemZSpread: 245
 --- !u!1 &1626256512
