@@ -17,13 +17,12 @@ public class MenuScreen : WindowBase
         _settingsBtn.onClick.AddListener(OpenSettings);
     }
 
-    private void OpenSettings()
-    {
-        _panelManager.OpenPanelByIndex(1);
-    }
+    private void OpenSettings() => _panelManager.OpenPanelByIndex(1);
+    private void OnPlayButtonPressed() => _gameBootstrapper.Run();
 
-    private void OnPlayButtonPressed()
+    private void OnDestroy()
     {
-        _gameBootstrapper.Run();
+        _playBtn.onClick.RemoveListener(OnPlayButtonPressed);
+        _settingsBtn.onClick.RemoveListener(OpenSettings);
     }
 }

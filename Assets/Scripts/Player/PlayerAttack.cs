@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 namespace CodeBase.Player
 {
@@ -57,7 +58,7 @@ namespace CodeBase.Player
             {
                 _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(playerConfig.Damage);
                 if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
-                    Handheld.Vibrate();
+                    HapticFeedback.LightFeedback();
                 Debug.Log($"Hit {_hits[i].name}");
             }
         }

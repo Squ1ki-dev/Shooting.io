@@ -41355,7 +41355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 1624479722}
   obstacleListSO: {fileID: 11400000, guid: c79a660a75d8c25418c0aeed1ea43df9, type: 2}
-  numItemsToSpawn: 750
+  numItemsToSpawn: 1000
   itemXSpread: 245
   itemZSpread: 245
 --- !u!1 &1626256512

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using CodeBase.Enemy;
+using CodeBase.Player;
 
 namespace CodeBase.UI.Elements
 {

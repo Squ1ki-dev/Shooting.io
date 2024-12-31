@@ -11,4 +11,5 @@ public class SettingScreen : WindowBase
 
     private void Start() => _closeBtn.onClick.AddListener(OpenMenu);
     private void OpenMenu() => _panelManager.OpenPanelByIndex(0);
+    private void OnDestroy() => _closeBtn.onClick.RemoveListener(OpenMenu);
 }

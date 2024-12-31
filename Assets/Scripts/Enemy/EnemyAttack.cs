@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -44,6 +45,8 @@ public class EnemyAttack : MonoBehaviour
             PhysicsDebug.DrawDebug(attackPoint.position, Cleavage, 3);
             Debug.Log($"Hit Player: {hit.name}");
             hit.transform.GetComponent<IHealth>().TakeDamage(enemySO.DamageValue);
+            if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
+                HapticFeedback.LightFeedback();
         }
     }
 

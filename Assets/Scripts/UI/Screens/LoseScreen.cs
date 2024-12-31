@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using CandyCoded.HapticFeedback;
 
 public class LoseScreen : WindowBase
 {
@@ -13,7 +14,15 @@ public class LoseScreen : WindowBase
     {
         _restartBtn.onClick.AddListener(Restart);
         _exitBtn.onClick.AddListener(Restart);
+        if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
+            HapticFeedback.MediumFeedback();
     }
 
     private void Restart() => SceneManager.LoadScene(Init);
+
+    private void OnDestroy()
+    {
+        _restartBtn.onClick.RemoveListener(Restart);
+        _restartBtn.onClick.RemoveListener(Restart);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using CodeBase.Player;
 
 public class UpgradeScreen : WindowBase
 {
@@ -56,5 +57,12 @@ public class UpgradeScreen : WindowBase
     private float CalculateStat(float baseValue, float growthRate, int level)
     {
         return baseValue * Mathf.Pow(1 + growthRate, level - 1);
+    }
+
+    private void OnDestroy()
+    {
+        _rangeBtn.onClick.RemoveListener(IncreaseRange);
+        _powerBtn.onClick.RemoveListener(IncreasePower);
+        _speedBtn.onClick.RemoveListener(IncreaseSpeed);
     }
 }

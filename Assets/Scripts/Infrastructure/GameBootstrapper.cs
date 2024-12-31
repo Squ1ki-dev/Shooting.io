@@ -10,7 +10,6 @@ public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
         _game = new Game(this, Curtain);
         _game.StateMachine.Enter<BootstrapState>();
-        Application.targetFrameRate = 60;
         DontDestroyOnLoad(this);
     }
 }

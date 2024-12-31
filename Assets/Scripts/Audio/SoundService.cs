@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using CandyCoded.HapticFeedback;
 
 namespace CodeBase.UI.Audio
 {
@@ -42,7 +43,7 @@ namespace CodeBase.UI.Audio
             PlayerPrefs.SetInt(Constants.VibrationParameter, isOn ? 1 : 0);
 
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
-                Handheld.Vibrate();
+                HapticFeedback.LightFeedback();
         }
     }
 }
