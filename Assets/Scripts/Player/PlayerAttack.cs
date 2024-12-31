@@ -56,7 +56,8 @@ namespace CodeBase.Player
             for (int i = 0; i < Hit(); i++)
             {
                 _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(playerConfig.Damage);
-                Handheld.Vibrate();
+                if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
+                    Handheld.Vibrate();
                 Debug.Log($"Hit {_hits[i].name}");
             }
         }

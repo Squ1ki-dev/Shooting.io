@@ -41,7 +41,7 @@ namespace CodeBase.UI.Audio
             _soundSettings.IsVibrationEnabled = isOn;
             PlayerPrefs.SetInt(Constants.VibrationParameter, isOn ? 1 : 0);
 
-            if (PlayerPrefs.HasKey(Constants.VibrationParameter))
+            if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
                 Handheld.Vibrate();
         }
     }
