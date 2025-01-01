@@ -51,6 +51,8 @@ namespace CodeBase.Wave
                 _waveTime -= Time.deltaTime;
                 UpdateTimerText(_waveTime);
             }
+            else
+                _timerText.gameObject.SetActive(false);
 
             if (_waveTime <= 0)
                 EndWave();
@@ -71,11 +73,12 @@ namespace CodeBase.Wave
         {
             _waveActive = false;
             _gameState.ChangeState(GameStates.Finish);
-            _timerText.gameObject.SetActive(false);
+            //_timerText.gameObject.SetActive(false);
         }
 
         private void UpdateTimerText(float time)
         {
+            _timerText.gameObject.SetActive(true);
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
             _timerText.text = $"{minutes:00}:{seconds:00}";

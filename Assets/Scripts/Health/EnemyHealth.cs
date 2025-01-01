@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private EnemySO _enemySO;
+    [SerializeField] private TMP_Text _damageText;
     private float _current;
     public event Action HealthChanged;
 
@@ -14,7 +17,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         get => _current;
         set
         {
-            _current = Mathf.Clamp(value, 0, Max); // Ensure Current doesn't exceed Max or go below 0
+            _current = Mathf.Clamp(value, 0, Max);
             HealthChanged?.Invoke();
         }
     }
@@ -34,6 +37,21 @@ public class EnemyHealth : MonoBehaviour, IHealth
         
         Current -= damage;
 
+        _damageText.text = $"-{(int)damage}";
+        RepresentDamage();
+
         HealthChanged?.Invoke();
+    }
+
+    private void RepresentDamage()
+    {
+        _damageText.color = Color.white;
+        _damageText.transform.localScale = Vector3.one;
+
+        Vector3 targetPosition = _damageText.transform.position + new Vector3(0, 1, 0);
+        _damageText.transform.DOMove(targetPosition, 1f).SetEase(Ease.OutQuad);
+        _damageText.DOFade(0, 1f)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() => _damageText.text = string.Empty);
     }
 }

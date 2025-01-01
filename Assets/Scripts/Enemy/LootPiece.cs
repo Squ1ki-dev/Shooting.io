@@ -24,7 +24,7 @@ namespace CodeBase.Enemy
 
             _picked = true;
             OnLootPicked?.Invoke(enemySO.XPValue);
-            ObjectPool.ReturnToPool(gameObject);
+            Destroy(gameObject);
         }
     }
 }
