@@ -10,7 +10,7 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerMove playerMove;
     private GameState _gameState;
-    //[SerializeField] private GameObject deathFx;
+    [SerializeField] private GameObject deathFx;
     private bool _isDead;
 
     private void Start()
@@ -39,6 +39,6 @@ public class PlayerDeath : MonoBehaviour
         playerMove.enabled = false;
         playerAttack.enabled = false;
         _gameState.ChangeState(GameStates.Lose);
-        //Instantiate(deathFx, transform.position, Quaternion.identity);
+        Instantiate(deathFx, transform.position, Quaternion.identity);
     }
 }

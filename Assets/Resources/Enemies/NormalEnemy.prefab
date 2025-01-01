@@ -534,7 +534,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3.2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 2765879019011431711}
+  deathFx: {fileID: 3007488350743235968, guid: c63066be0324254439f0656b09195588, type: 3}
 --- !u!114 &2630194645127637230
 MonoBehaviour:
   m_ObjectHideFlags: 0

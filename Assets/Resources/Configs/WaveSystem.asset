@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWave: 1
   BaseWeakEnemyCount: 25
-  BaseNormalEnemyCount: 0
+  BaseNormalEnemyCount: 5
   EnemyIncrementPerWave: 4
   BossWaveInterval: 10
-  BossWaveWeakEnemies: 5
-  BossWaveNormalEnemies: 3
+  BossWaveWeakEnemies: 15
+  BossWaveNormalEnemies: 10
   MinSpawnRadius: 20
   MaxSpawnRadius: 220

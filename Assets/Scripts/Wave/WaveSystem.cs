@@ -34,6 +34,10 @@ namespace CodeBase.Wave
                 PlayerPrefs.Save();
             }
 
+            UpdateEnemyXP(_waveSetup.CurrentWave);
+            // normalEnemySO.XPValue = PlayerPrefs.GetInt(Constants.NormalXP);
+            // bossEnemySO.XPValue = PlayerPrefs.GetInt(Constants.BossXP);
+
             _waveSetup.CurrentWave = PlayerPrefs.GetInt(Constants.WaveNumber);
             Debug.Log($"Wave {_waveSetup.CurrentWave}");
         }
@@ -56,6 +60,7 @@ namespace CodeBase.Wave
         {
             _waveTime = CalculateWaveTime(_waveSetup.CurrentWave);
             _waveActive = true;
+            UpdateEnemyXP(_waveSetup.CurrentWave);
             SpawnEnemies(_waveSetup.CurrentWave);
             CombineMeshes();
 
@@ -85,6 +90,13 @@ namespace CodeBase.Wave
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
             _timerText.text = $"{minutes:00}:{seconds:00}";
+        }
+
+        private void UpdateEnemyXP(int waveNumber)
+        {
+            _weakEnemySO.XPValue = CalculateWeakXP();
+            normalEnemySO.XPValue = CalculateNormalXP(waveNumber);
+            bossEnemySO.XPValue = CalculateBossXP(waveNumber);
         }
 
         private void SpawnEnemies(int waveNumber)
@@ -141,6 +153,25 @@ namespace CodeBase.Wave
         private float CalculateWaveTime(int waveNumber)
         {
             return 30 + (waveNumber - 1) * 10;
+        }
+
+        private int CalculateWeakXP()
+        {
+            return 5; // Fixed base XP
+        }
+
+        private int CalculateNormalXP(int waveNumber)
+        {
+            int normalXP = Mathf.RoundToInt(5 * 2 + (waveNumber * 0.5f));
+            PlayerPrefs.SetInt(Constants.NormalXP, normalXP);
+            return normalEnemySO.XPValue = normalXP;
+        }
+
+        private int CalculateBossXP(int waveNumber)
+        {
+            int bossXP = Mathf.RoundToInt(5 * 10 + (waveNumber * 5));
+            PlayerPrefs.SetInt(Constants.BossXP, bossXP);
+            return bossEnemySO.XPValue = bossXP;
         }
     }
 }

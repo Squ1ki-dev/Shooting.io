@@ -32,19 +32,19 @@ public class UpgradeScreen : WindowBase
 
     private void IncreaseRange()
     {
-        _playerConfig.AttackRange = CalculateStat(_playerConfig.AttackRange, _rangeGrowth, _playerConfig.Level);
+        _playerConfig.AttackRange = CalculateStat(_playerConfig.AttackRange, _rangeGrowth);
         ContinueGame();
     }
 
     private void IncreasePower()
     {
-        _playerConfig.Damage = CalculateStat(_playerConfig.Damage, _damageGrowth, _playerConfig.Level);
+        _playerConfig.Damage = CalculateStat(_playerConfig.Damage, _damageGrowth);
         ContinueGame();
     }
 
     private void IncreaseSpeed()
     {
-        _playerConfig.Speed = CalculateStat(_playerConfig.Speed, _movementSpeedGrowth, _playerConfig.Level);
+        _playerConfig.Speed = CalculateStat(_playerConfig.Speed, _movementSpeedGrowth);
         ContinueGame();
     }
 
@@ -54,9 +54,9 @@ public class UpgradeScreen : WindowBase
         _gameState.ChangeState(GameStates.Game);
     }
 
-    private float CalculateStat(float baseValue, float growthRate, int level)
+    private float CalculateStat(float baseValue, float growthRate)
     {
-        return baseValue * Mathf.Pow(1 + growthRate, level - 1);
+        return baseValue * (1 + growthRate);
     }
 
     private void OnDestroy()

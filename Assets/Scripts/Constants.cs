@@ -7,4 +7,6 @@ public static class Constants
     public const string MusicVolumeParameter = "MusicVolume";
     public const string SFXVolumeParameter = "SFXVolume";
     public const string VibrationParameter = "VibroParam";
+    public const string NormalXP = "NormalXP";
+    public const string BossXP = "BossXP";
 }

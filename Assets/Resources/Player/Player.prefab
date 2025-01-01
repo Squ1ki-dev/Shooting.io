@@ -514,6 +514,7 @@ MonoBehaviour:
   playerHealth: {fileID: 3381914439461485432}
   playerAttack: {fileID: 4622439340007453593}
   playerMove: {fileID: 507394231268512553}
+  deathFx: {fileID: 9183441545307328538, guid: 24731d4f17b7d214c9ac3c0aefe3f0b1, type: 3}
 --- !u!114 &4622439340007453593
 MonoBehaviour:
   m_ObjectHideFlags: 0

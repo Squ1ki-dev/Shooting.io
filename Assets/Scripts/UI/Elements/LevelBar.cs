@@ -35,6 +35,7 @@ namespace CodeBase.UI.Elements
             }
 
             _levelText.text = "Level: " + PlayerPrefs.GetInt(Constants.Level);
+            playerConfig.Level = PlayerPrefs.GetInt(Constants.Level);
 
             if (PlayerPrefs.HasKey(Constants.FillAmount))
             {

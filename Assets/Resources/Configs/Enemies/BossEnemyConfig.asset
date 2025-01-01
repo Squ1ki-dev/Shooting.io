@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12474aba90f889b49856740b3ca70d16, type: 3}
-  m_Name: NormalEnemyConfig
+  m_Name: BossEnemyConfig
   m_EditorClassIdentifier: 
-  XPValue: 30
-  Health: 30
-  DamageValue: 10
-  AttackCooldown: 0
-  EnemyPrefab: {fileID: 4949932929223706187, guid: 6274746acca145244be0f91f4cd0947c,
+  XPValue: 80
+  Health: 300
+  DamageValue: 20
+  AttackCooldown: 0.25
+  EnemyPrefab: {fileID: 4949932929223706187, guid: fbbfe9dfa6591d44e900e531d0c13bd2,
     type: 3}
