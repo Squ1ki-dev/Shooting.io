@@ -18,3 +18,4 @@ MonoBehaviour:
   AttackSpeed: 0.5
   Damage: 10
   AttackCooldownDuration: 0.5
+  PushStrength: 150

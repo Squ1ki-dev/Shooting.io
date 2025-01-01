@@ -10,12 +10,14 @@ namespace CodeBase.Wave
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private Transform _enemyParent;
         [SerializeField] private EnemySO _weakEnemySO;
-        [SerializeField] private EnemySO normalEnemySO;
-        [SerializeField] private EnemySO bossEnemySO;
+        [SerializeField] private EnemySO _normalEnemySO;
+        [SerializeField] private EnemySO _bossEnemySO;
         [SerializeField] private WaveSetupSO _waveSetup;
         [SerializeField] private TMP_Text _timerText;
 
         private GameState _gameState;
+        private int _weakEnemyCount;
+        private int _normalEnemyCount;
         private float _waveTime;
         private bool _waveActive;
         public int CurrentWave => _waveSetup.CurrentWave;
@@ -35,8 +37,6 @@ namespace CodeBase.Wave
             }
 
             UpdateEnemyXP(_waveSetup.CurrentWave);
-            // normalEnemySO.XPValue = PlayerPrefs.GetInt(Constants.NormalXP);
-            // bossEnemySO.XPValue = PlayerPrefs.GetInt(Constants.BossXP);
 
             _waveSetup.CurrentWave = PlayerPrefs.GetInt(Constants.WaveNumber);
             Debug.Log($"Wave {_waveSetup.CurrentWave}");
@@ -62,20 +62,9 @@ namespace CodeBase.Wave
             _waveActive = true;
             UpdateEnemyXP(_waveSetup.CurrentWave);
             SpawnEnemies(_waveSetup.CurrentWave);
-            CombineMeshes();
 
             PlayerPrefs.SetInt(Constants.WaveNumber, _waveSetup.CurrentWave);
             _waveSetup.CurrentWave++;
-        }
-
-        private void CombineMeshes()
-        {
-            MeshCombiner meshCombiner = _enemyParent.gameObject.AddComponent<MeshCombiner>();
-
-            meshCombiner.CreateMultiMaterialMesh = true;
-            meshCombiner.DestroyCombinedChildren = true;
-
-            meshCombiner.CombineMeshes(false);
         }
 
         private void EndWave()
@@ -95,20 +84,23 @@ namespace CodeBase.Wave
         private void UpdateEnemyXP(int waveNumber)
         {
             _weakEnemySO.XPValue = CalculateWeakXP();
-            normalEnemySO.XPValue = CalculateNormalXP(waveNumber);
-            bossEnemySO.XPValue = CalculateBossXP(waveNumber);
+            _normalEnemySO.XPValue = CalculateNormalXP(waveNumber);
+            _bossEnemySO.XPValue = CalculateBossXP(waveNumber);
         }
 
         private void SpawnEnemies(int waveNumber)
         {
-            int weakEnemyCount = _waveSetup.BaseWeakEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
-            int normalEnemyCount = _waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
+            _weakEnemyCount = _waveSetup.BaseWeakEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
+            if(waveNumber >= 5)
+                _normalEnemyCount = _waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
+            else
+                _normalEnemyCount = 0;
 
             if (IsBossWave(waveNumber))
                 SpawnBossEnemy(waveNumber);
 
-            SpawnEnemyGroup(_weakEnemySO, weakEnemyCount);
-            SpawnEnemyGroup(normalEnemySO, normalEnemyCount);
+            SpawnEnemyGroup(_weakEnemySO, _weakEnemyCount);
+            SpawnEnemyGroup(_normalEnemySO, _normalEnemyCount);
         }
 
         private void SpawnBossEnemy(int waveNumber)
@@ -117,10 +109,10 @@ namespace CodeBase.Wave
             int bossWaveNormalEnemies = _waveSetup.BossWaveNormalEnemies + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
 
             SpawnEnemyGroup(_weakEnemySO, bossWaveWeakEnemies);
-            SpawnEnemyGroup(normalEnemySO, bossWaveNormalEnemies);
+            SpawnEnemyGroup(_normalEnemySO, bossWaveNormalEnemies);
 
             Vector3 bossPosition = GetRandomPositionAround(_spawnPoint.position, _waveSetup.MinSpawnRadius, _waveSetup.MaxSpawnRadius);
-            GameObject bossEnemy = ObjectPool.SpawnObject(bossEnemySO.EnemyPrefab, bossPosition, Quaternion.identity);
+            GameObject bossEnemy = ObjectPool.SpawnObject(_bossEnemySO.EnemyPrefab, bossPosition, Quaternion.identity);
             bossEnemy.transform.SetParent(_enemyParent); // Set parent
         }
 
@@ -164,14 +156,14 @@ namespace CodeBase.Wave
         {
             int normalXP = Mathf.RoundToInt(5 * 2 + (waveNumber * 0.5f));
             PlayerPrefs.SetInt(Constants.NormalXP, normalXP);
-            return normalEnemySO.XPValue = normalXP;
+            return _normalEnemySO.XPValue = normalXP;
         }
 
         private int CalculateBossXP(int waveNumber)
         {
             int bossXP = Mathf.RoundToInt(5 * 10 + (waveNumber * 5));
             PlayerPrefs.SetInt(Constants.BossXP, bossXP);
-            return bossEnemySO.XPValue = bossXP;
+            return _bossEnemySO.XPValue = bossXP;
         }
     }
 }

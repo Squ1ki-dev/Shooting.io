@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +14,5 @@ public class LootSpawner : MonoBehaviour
     }
 
     private void Start() => _enemyDeath.Happened += SpawnLoot;
-
-    private void SpawnLoot()
-    {
-        GameObject loot = ObjectPool.SpawnObject(lootObj, transform.position, Quaternion.identity);;
-        loot.transform.position = transform.position;
-    }
+    private void SpawnLoot() => ObjectPool.SpawnObject(lootObj, transform.position, Quaternion.identity);
 }

@@ -56,9 +56,24 @@ namespace CodeBase.Player
         {
             for (int i = 0; i < Hit(); i++)
             {
-                _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(playerConfig.Damage);
+                var enemy = _hits[i].transform.parent;
+
+                if (enemy.TryGetComponent<IHealth>(out IHealth health))
+                    health.TakeDamage(playerConfig.Damage);
+
+                if (enemy.TryGetComponent<Rigidbody>(out Rigidbody enemyRigidbody))
+                {
+                    if (Random.Range(0f, 1f) <= 0.3f)
+                    {
+                        Vector3 pushDirection = (_hits[i].transform.position - attackPoint.position).normalized;
+                        enemyRigidbody.AddForce(pushDirection * playerConfig.PushStrength);
+                        health.TakeDamage(playerConfig.Damage);
+                    }
+                }
+                
                 if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
                     HapticFeedback.LightFeedback();
+
                 Debug.Log($"Hit {_hits[i].name}");
             }
         }

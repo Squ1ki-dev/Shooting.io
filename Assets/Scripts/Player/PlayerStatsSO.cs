@@ -11,5 +11,6 @@ namespace CodeBase.Player
         public float AttackSpeed;
         public float Damage;
         public float AttackCooldownDuration;
+        public float PushStrength;
     }
 }

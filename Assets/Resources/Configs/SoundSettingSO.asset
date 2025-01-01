@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMusicEnabled: 1
   IsSFXEnabled: 1
+  IsVibrationEnabled: 1
   MusicVolume: 0
   SfxVolume: 0
