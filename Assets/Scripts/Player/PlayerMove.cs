@@ -20,23 +20,24 @@ namespace CodeBase.Player
         }
 
         private void Start() => _camera = Camera.main;
+        private void Update() => Movement();
 
-        private void Update()
+        private void Movement()
         {
             Vector3 movementVector = Vector3.zero;
 
-            if(_inputService.Axis.sqrMagnitude > Constants.Epsilon)
+            if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
             {
                 movementVector = _camera.transform.TransformDirection(_inputService.Axis);
                 movementVector.y = 0;
                 movementVector.Normalize();
 
                 transform.forward = movementVector;
+                movementVector *= _inputService.Axis.magnitude * playerConfig.Speed;
             }
 
             movementVector += Physics.gravity;
-            
-            _characterController.Move(playerConfig.Speed * movementVector * Time.deltaTime);
+            _characterController.Move(movementVector * Time.deltaTime);
         }
     }
 }
