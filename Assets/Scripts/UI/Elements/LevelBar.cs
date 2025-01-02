@@ -15,7 +15,7 @@ namespace CodeBase.UI.Elements
         private GameState _mainGame;
         [SerializeField] private TMP_Text _levelText;
         [SerializeField] private Image _imageCurrent;
-        [SerializeField] private int _targetXP = 100;
+        [SerializeField] private int _targetXP;
         [SerializeField] private PlayerStatsSO playerConfig;
 
         private void Start()
@@ -72,7 +72,10 @@ namespace CodeBase.UI.Elements
                 PlayerPrefs.SetInt(Constants.Level, playerConfig.Level);
                 Debug.Log($"Level increased to: {playerConfig.Level}");
                 _mainGame.ChangeState(GameStates.Upgrade);
+
                 _targetXP += 50;
+                PlayerPrefs.SetInt(Constants.TargetXP, _targetXP);
+                PlayerPrefs.Save();
             }
         }
     }

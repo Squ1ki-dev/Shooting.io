@@ -66,6 +66,8 @@ namespace CodeBase.Wave
             SpawnEnemies(_waveSetup.CurrentWave);
 
             PlayerPrefs.SetInt(Constants.WaveNumber, _waveSetup.CurrentWave);
+            PlayerPrefs.Save();
+
             _waveSetup.CurrentWave++;
         }
 
@@ -73,7 +75,7 @@ namespace CodeBase.Wave
         {
             _waveActive = false;
             _gameState.ChangeState(GameStates.Finish);
-            //_timerText.gameObject.SetActive(false);
+            _timerText.gameObject.SetActive(false);
         }
 
         private void UpdateTimerText(float time)

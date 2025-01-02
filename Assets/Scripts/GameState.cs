@@ -32,7 +32,6 @@ public class GameState : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartGameCountdown());
-        //_blockerImg.SetActive(false);
         IsBlockerActive(false);
     }
 
@@ -44,33 +43,29 @@ public class GameState : MonoBehaviour
         {
             case GameStates.Game:
                 _panelManager.CloseAllPanels();
-                IsBlockerActive(true);
-                //_blockerImg.SetActive(true);
                 break;
 
             case GameStates.Upgrade:
-                IsBlockerActive(false);
                 _panelManager.OpenPanelByIndex(_upradeIndex);
                 break;
 
             case GameStates.Lose:
-                IsBlockerActive(false);
                 _panelManager.OpenPanelByIndex(_loseIndex);
                 break;
 
             case GameStates.Finish:
-                IsBlockerActive(false);
                 _panelManager.OpenPanelByIndex(_finishIndex);
                 break;
         }
     }
+
+    private void IsBlockerActive(bool isActive) => _blockerImg.SetActive(isActive);
 
     private IEnumerator StartGameCountdown()
     {
         for (int i = 3; i > 0; i--)
         {
             IsBlockerActive(true);
-            _blockerImg.SetActive(true);
             _countdownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
@@ -78,13 +73,7 @@ public class GameState : MonoBehaviour
         _countdownText.text = "GO!";
         CurrentState = GameStates.Game;
         yield return new WaitForSeconds(1f);
-        _countdownText.text = "";
+        _countdownText.text = string.Empty;
         IsBlockerActive(false);
-        //_blockerImg.SetActive(false);
-    }
-
-    private void IsBlockerActive(bool isActive)
-    {
-        _blockerImg.SetActive(isActive);
     }
 }

@@ -9,4 +9,5 @@ public static class Constants
     public const string VibrationParameter = "VibroParam";
     public const string NormalXP = "NormalXP";
     public const string BossXP = "BossXP";
+    public const string TargetXP = "TargetXP";
 }
