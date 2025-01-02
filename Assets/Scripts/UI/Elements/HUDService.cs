@@ -14,7 +14,7 @@ namespace CodeBase.UI.Elements
         private void Start()
         {
             _gameState = FindObjectOfType<GameState>();
-            _waveNumberText.text = "Wave: " + PlayerPrefs.GetInt(Constants.WaveNumber).ToString();
+            _waveNumberText.text = "Wave: " + PlayerPrefs.GetInt(Constants.WaveNumber, 1).ToString();
 
             CheckForValidState();
         }

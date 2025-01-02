@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using CandyCoded.HapticFeedback;
+using CodeBase.UI.Audio;
 
-namespace CodeBase.UI.Audio
+namespace CodeBase.Service
 {
     public class SoundSettingService : MonoBehaviour
     {

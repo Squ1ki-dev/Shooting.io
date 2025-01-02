@@ -30,15 +30,9 @@ namespace CodeBase.Wave
 
         private void Start()
         {
-            if (!PlayerPrefs.HasKey(Constants.WaveNumber))
-            {
-                PlayerPrefs.SetInt(Constants.WaveNumber, _waveSetup.CurrentWave);
-                PlayerPrefs.Save();
-            }
-
+            _waveSetup.CurrentWave = PlayerPrefs.GetInt(Constants.WaveNumber, 1);
             UpdateEnemyXP(_waveSetup.CurrentWave);
 
-            _waveSetup.CurrentWave = PlayerPrefs.GetInt(Constants.WaveNumber);
             Debug.Log($"Wave {_waveSetup.CurrentWave}");
         }
 
@@ -58,15 +52,19 @@ namespace CodeBase.Wave
                 EndWave();
         }
 
+        private void SaveWaveNumber()
+        {
+            PlayerPrefs.SetInt(Constants.WaveNumber, _waveSetup.CurrentWave);
+            PlayerPrefs.Save();
+        }
+
         public void StartNextWave()
         {
+            _waveSetup.CurrentWave = PlayerPrefs.GetInt(Constants.WaveNumber, 1);
             _waveTime = CalculateWaveTime(_waveSetup.CurrentWave);
             _waveActive = true;
             UpdateEnemyXP(_waveSetup.CurrentWave);
             SpawnEnemies(_waveSetup.CurrentWave);
-
-            PlayerPrefs.SetInt(Constants.WaveNumber, _waveSetup.CurrentWave);
-            PlayerPrefs.Save();
 
             _waveSetup.CurrentWave++;
         }
@@ -75,6 +73,7 @@ namespace CodeBase.Wave
         {
             _waveActive = false;
             _gameState.ChangeState(GameStates.Finish);
+            SaveWaveNumber();
             _timerText.gameObject.SetActive(false);
         }
 
@@ -96,10 +95,9 @@ namespace CodeBase.Wave
         private void SpawnEnemies(int waveNumber)
         {
             _weakEnemyCount = _waveSetup.BaseWeakEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
-            if(waveNumber >= 5)
-                _normalEnemyCount = _waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave;
-            else
-                _normalEnemyCount = 0;
+            _normalEnemyCount = waveNumber >= 5 
+                ? _waveSetup.BaseNormalEnemyCount + (waveNumber - 1) * _waveSetup.EnemyIncrementPerWave 
+                : 0;
 
             if (IsBossWave(waveNumber))
                 SpawnBossEnemy(waveNumber);

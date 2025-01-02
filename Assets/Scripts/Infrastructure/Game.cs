@@ -1,4 +1,5 @@
 using UnityEngine;
+using CodeBase.Service;
 
 public class Game
 {

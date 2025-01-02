@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using CodeBase.Service;
 
 public class EnemyMoveToPlayer : MonoBehaviour
 {

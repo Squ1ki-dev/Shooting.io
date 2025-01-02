@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using CandyCoded.HapticFeedback;
+using CodeBase.Service;
 
 public class EnemyAttack : MonoBehaviour
 {

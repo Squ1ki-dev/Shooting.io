@@ -13,30 +13,28 @@ namespace CodeBase.UI.Elements
         [SerializeField] private Image _imageCurrent;
         [SerializeField] private PlayerStatsSO _playerConfig;
 
+        private int _savedLevel;
         private int _currentXP;
         private int _targetXP;
-
+        private float _savedFillAmount;
         private const int DefaultTargetXP = 100;
 
         private void Start() => Initialize();
 
         private void Initialize()
         {
-            int savedLevel = PlayerPrefs.GetInt(Constants.Level, 1);
-            _playerConfig.Level = savedLevel;
-            _levelText.text = savedLevel.ToString();
+            _savedLevel = PlayerPrefs.GetInt(Constants.Level, 1);
+            _playerConfig.Level = _savedLevel;
+            _levelText.text = _savedLevel.ToString();
 
-            float savedFillAmount = PlayerPrefs.GetFloat(Constants.FillAmount, 0);
-            _imageCurrent.fillAmount = savedFillAmount;
+            _savedFillAmount = PlayerPrefs.GetFloat(Constants.FillAmount, 0);
+            _imageCurrent.fillAmount = _savedFillAmount;
 
             _targetXP = PlayerPrefs.GetInt(Constants.TargetXP, DefaultTargetXP);
-
-            // Calculate _currentXP based on fillAmount and target XP
-            _currentXP = Mathf.RoundToInt(savedFillAmount * _targetXP);
+            _currentXP = Mathf.RoundToInt(_savedFillAmount * _targetXP);
 
             UpdateXPText();
         }
-
 
         private void Update() => UpdateUI();
 
@@ -46,9 +44,6 @@ namespace CodeBase.UI.Elements
             _imageCurrent.fillAmount = PlayerPrefs.GetFloat(Constants.FillAmount, 0);
         }
 
-        private void UpdateXPText()
-        {
-            _xpText.text = $"{_currentXP}/{_targetXP}";
-        }
+        private void UpdateXPText() => _xpText.text = $"{_currentXP}/{_targetXP}";
     }
 }

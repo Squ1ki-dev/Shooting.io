@@ -10,23 +10,38 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 144699442099150587, guid: 2910ff74534a1544ba921a9a2e8f10f9,
         type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 144699442099150587, guid: 2910ff74534a1544ba921a9a2e8f10f9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 144699442099150587, guid: 2910ff74534a1544ba921a9a2e8f10f9,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 144699442099150587, guid: 2910ff74534a1544ba921a9a2e8f10f9,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1598081869677148685, guid: 2910ff74534a1544ba921a9a2e8f10f9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1598081869677148685, guid: 2910ff74534a1544ba921a9a2e8f10f9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1598081869677148685, guid: 2910ff74534a1544ba921a9a2e8f10f9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1598081869677148685, guid: 2910ff74534a1544ba921a9a2e8f10f9,
         type: 3}
@@ -99,7 +114,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c0c94d8b21f58ec469ddbaf801c1d998, type: 2}
+      objectReference: {fileID: 2100000, guid: c8d6649bf5d9bbe488ac8ae99ba43ab9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -127,4 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddd73d076e6e4947bd5d786721e2363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 25
+  rotationSpeed: 50
