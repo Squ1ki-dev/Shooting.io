@@ -465,10 +465,10 @@ Transform:
   - {fileID: 4328317142142568727}
   - {fileID: 4179440065052792874}
   - {fileID: 6739472485386969399}
+  - {fileID: 9020185878704362403}
   - {fileID: 4408529932173158094}
   - {fileID: 4194778261878349251}
   - {fileID: 796031050189660031}
-  - {fileID: 9020185878704362403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3381017369329171175
@@ -667,11 +667,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: {x: 4.01, y: 1.12, z: 2.85}
-  attackPoint: {fileID: 6739472485386969399}
+  _attackPoint: {fileID: 6739472485386969399}
   _attackKnifePoint: {fileID: 9020185878704362403}
-  knifePrefab: {fileID: 7420557423756780331, guid: a2e1ee59d15e6b14c8a902658dce274c,
+  _knifePrefab: {fileID: 7420557423756780331, guid: a2e1ee59d15e6b14c8a902658dce274c,
     type: 3}
-  playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
+  _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
+  _attackSlashVFX: {fileID: 1205235233878744, guid: 2b2844f70cdc117499cbac5446906321,
+    type: 3}
 --- !u!114 &4644642235106410535
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace CodeBase.Player
         [SerializeField] private Transform _attackKnifePoint;
         [SerializeField] private GameObject _knifePrefab;
         [SerializeField] private PlayerStatsSO _playerConfig;
+        [SerializeField] private GameObject _attackSlashVFX;
 
         private static int _layerMask;
         private float _attackTimer;
@@ -25,7 +26,6 @@ namespace CodeBase.Player
         private void Awake()
         {
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
-            _playerConfig.AmountOfKnives = 0;
         }
 
         private void Update()
@@ -64,7 +64,10 @@ namespace CodeBase.Player
                 var enemy = _hits[i].transform.parent;
 
                 if (enemy.TryGetComponent<IHealth>(out IHealth health))
+                {
+                    StartCoroutine(ActivateAttackVFX());
                     health.TakeDamage(_playerConfig.Damage);
+                }
 
                 if (enemy.TryGetComponent<Rigidbody>(out Rigidbody enemyRigidbody))
                 {
@@ -134,6 +137,14 @@ namespace CodeBase.Player
 
         private int KnifeHit() =>
             Physics.OverlapSphereNonAlloc(_attackKnifePoint.position, 10f, _hits, _layerMask);
+
+        private IEnumerator ActivateAttackVFX()
+        {
+            Quaternion attackVFXRotation = Quaternion.Euler(-90, 0, 0);
+            GameObject _attackVFX = ObjectPool.SpawnObject(_attackSlashVFX, _attackPoint.position, attackVFXRotation);
+            yield return new WaitForSeconds(1.5f);
+            ObjectPool.ReturnToPool(_attackVFX);
+        }
 
         private void OnDrawGizmos()
         {

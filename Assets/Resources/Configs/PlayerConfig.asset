@@ -21,4 +21,5 @@ MonoBehaviour:
   Damage: 10
   AttackCooldownDuration: 0.5
   PushStrength: 150
-  AmountOfKnives: 0
+  AmountOfKnives: 1
+  KnivesDamage: 15

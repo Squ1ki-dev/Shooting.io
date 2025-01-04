@@ -106,9 +106,7 @@ public class UpgradeScreen : WindowBase
             _playerConfig.AmountOfKnives = _maxAmountOfKnives;
             _knivesBtn.enabled = false;
         }
-            
-        // _playerConfig.Speed = CalculateStat(_playerConfig.Speed, _movementSpeedGrowth);
-        // PlayerStatsService.SavePlayerStats(_playerConfig);
+        
         ContinueGame();
     }
 
