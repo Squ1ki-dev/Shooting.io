@@ -14,5 +14,7 @@ namespace CodeBase.Player
         public float Damage;
         public float AttackCooldownDuration;
         public float PushStrength;
+        public int AmountOfKnives;
+        public float KnivesDamage;
     }
 }

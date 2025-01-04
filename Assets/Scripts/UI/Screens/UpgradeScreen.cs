@@ -17,6 +17,7 @@ public class UpgradeScreen : WindowBase
     private PanelManager _panelManager;
     private GameState _gameState;
 
+    private const int _maxAmountOfKnives = 5;
     private const float _rangeGrowth = 0.05f;
     private const float _damageGrowth = 0.10f;
     private const float _movementSpeedGrowth = 0.02f;
@@ -98,6 +99,14 @@ public class UpgradeScreen : WindowBase
 
     private void IncreaseAmountOfKnives()
     {
+        if(_playerConfig.AmountOfKnives != _maxAmountOfKnives)
+            _playerConfig.AmountOfKnives++;
+        else
+        {
+            _playerConfig.AmountOfKnives = _maxAmountOfKnives;
+            _knivesBtn.enabled = false;
+        }
+            
         // _playerConfig.Speed = CalculateStat(_playerConfig.Speed, _movementSpeedGrowth);
         // PlayerStatsService.SavePlayerStats(_playerConfig);
         ContinueGame();

@@ -9,8 +9,10 @@ namespace CodeBase.Player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private Vector3 boxSize;
-        [SerializeField] private Transform attackPoint;
-        [SerializeField] private PlayerStatsSO playerConfig;
+        [SerializeField] private Transform _attackPoint;
+        [SerializeField] private Transform _attackKnifePoint;
+        [SerializeField] private GameObject _knifePrefab;
+        [SerializeField] private PlayerStatsSO _playerConfig;
 
         private static int _layerMask;
         private float _attackTimer;
@@ -23,6 +25,7 @@ namespace CodeBase.Player
         private void Awake()
         {
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
+            _playerConfig.AmountOfKnives = 0;
         }
 
         private void Update()
@@ -46,10 +49,12 @@ namespace CodeBase.Player
         private void StartAttack()
         {
             _isAttacking = true;
-            _attackTimer = playerConfig.AttackSpeed;
+            _attackTimer = _playerConfig.AttackSpeed;
 
             Debug.Log("Player ATTACK started!");
             PerformAttack();
+            if (Random.Range(0f, 1f) <= 0.3f)
+                PerformKnivesAttack();
         }
 
         private void PerformAttack()
@@ -59,15 +64,14 @@ namespace CodeBase.Player
                 var enemy = _hits[i].transform.parent;
 
                 if (enemy.TryGetComponent<IHealth>(out IHealth health))
-                    health.TakeDamage(playerConfig.Damage);
+                    health.TakeDamage(_playerConfig.Damage);
 
                 if (enemy.TryGetComponent<Rigidbody>(out Rigidbody enemyRigidbody))
                 {
                     if (Random.Range(0f, 1f) <= 0.3f)
                     {
-                        Vector3 pushDirection = (_hits[i].transform.position - attackPoint.position).normalized;
-                        enemyRigidbody.AddForce(pushDirection * playerConfig.PushStrength);
-                        health.TakeDamage(playerConfig.Damage);
+                        Vector3 pushDirection = (_hits[i].transform.position - _attackPoint.position).normalized;
+                        enemyRigidbody.AddForce(pushDirection * _playerConfig.PushStrength);
                     }
                 }
                 
@@ -75,6 +79,29 @@ namespace CodeBase.Player
                     HapticFeedback.LightFeedback();
 
                 Debug.Log($"Hit {_hits[i].name}");
+            }
+        }
+
+        private void PerformKnivesAttack()
+        {
+            int knivesToShoot = Mathf.Min(_playerConfig.AmountOfKnives, _hits.Length);
+
+            for (int i = 0; i < knivesToShoot; i++)
+            {
+                var enemyTransform = _hits[i]?.transform?.parent;
+                if (enemyTransform == null)
+                    continue;
+
+                Vector3 direction = (enemyTransform.position - _attackKnifePoint.position).normalized;
+
+                GameObject knife = ObjectPool.SpawnObject(_knifePrefab, _attackKnifePoint.position, Quaternion.LookRotation(direction));
+                Debug.Log($"Knife #{i + 1} launched at {enemyTransform.name}.");
+
+                if (enemyTransform.TryGetComponent<IHealth>(out IHealth health))
+                {
+                    health.TakeDamage(_playerConfig.KnivesDamage);
+                    ObjectPool.ReturnToPool(knife);
+                }
             }
         }
 
@@ -92,7 +119,7 @@ namespace CodeBase.Player
         private void EndAttack()
         {
             _isAttacking = false;
-            _attackCooldown = playerConfig.AttackCooldownDuration;
+            _attackCooldown = _playerConfig.AttackCooldownDuration;
             Debug.Log("Player ATTACK ended!");
         }
 
@@ -103,14 +130,17 @@ namespace CodeBase.Player
         private bool CanAttack() => _attackIsActive && !_isAttacking && CooldownIsUp();
 
         private int Hit() =>
-            Physics.OverlapSphereNonAlloc(attackPoint.position, playerConfig.AttackRange, _hits, _layerMask);
+            Physics.OverlapSphereNonAlloc(_attackPoint.position, _playerConfig.AttackRange, _hits, _layerMask);
+
+        private int KnifeHit() =>
+            Physics.OverlapSphereNonAlloc(_attackKnifePoint.position, 10f, _hits, _layerMask);
 
         private void OnDrawGizmos()
         {
-            if (attackPoint != null)
+            if (_attackPoint != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(attackPoint.position, playerConfig.AttackRange);
+                Gizmos.DrawWireSphere(_attackPoint.position, _playerConfig.AttackRange);
             }
         }
     }

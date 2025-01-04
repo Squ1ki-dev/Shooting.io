@@ -20,7 +20,10 @@ namespace CodeBase.Service
             {
                 string json = File.ReadAllText(SaveFilePath);
                 JsonUtility.FromJsonOverwrite(json, playerConfig);
+                Debug.Log($"Player stats loaded from: {SaveFilePath}");
             }
+            else
+                Debug.LogWarning($"No player stats found at: {SaveFilePath}");
         }
     }
 }
