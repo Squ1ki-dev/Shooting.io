@@ -5,29 +5,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MenuScreen : WindowBase
+namespace CodeBase.UI.Screens
 {
-    [SerializeField] private Button _playBtn, _settingsBtn;
-    [SerializeField] private GameBootstrapper _gameBootstrapper;
-    [SerializeField] private PanelManager _panelManager;
-
-    private void Start()
+    public class MenuScreen : WindowBase
     {
-        _playBtn.enabled = true;
-        _playBtn.onClick.AddListener(OnPlayButtonPressed);
-        _settingsBtn.onClick.AddListener(OpenSettings);
-    }
+        [SerializeField] private Button _playBtn, _settingsBtn;
+        [SerializeField] private GameBootstrapper _gameBootstrapper;
+        [SerializeField] private PanelManager _panelManager;
 
-    private void OpenSettings() => _panelManager.OpenPanelByIndex(1);
-    private void OnPlayButtonPressed()
-    {
-        _playBtn.enabled = false;
-        _gameBootstrapper.Run();
-    }
+        private void Start()
+        {
+            _playBtn.enabled = true;
+            _playBtn.onClick.AddListener(OnPlayButtonPressed);
+            _settingsBtn.onClick.AddListener(OpenSettings);
+        }
 
-    private void OnDestroy()
-    {
-        _playBtn.onClick.RemoveListener(OnPlayButtonPressed);
-        _settingsBtn.onClick.RemoveListener(OpenSettings);
+        private void OpenSettings() => _panelManager.OpenPanelByIndex(1);
+        private void OnPlayButtonPressed()
+        {
+            _playBtn.enabled = false;
+            _gameBootstrapper.Run();
+        }
+
+        private void OnDestroy()
+        {
+            _playBtn.onClick.RemoveListener(OnPlayButtonPressed);
+            _settingsBtn.onClick.RemoveListener(OpenSettings);
+        }
     }
 }

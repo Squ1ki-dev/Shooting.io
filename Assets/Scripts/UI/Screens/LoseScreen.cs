@@ -6,23 +6,26 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CandyCoded.HapticFeedback;
 
-public class LoseScreen : WindowBase
+namespace CodeBase.UI.Screens
 {
-    private const string Init = "Init";
-    [SerializeField] private Button _restartBtn, _exitBtn;
-    private void Start() 
+    public class LoseScreen : WindowBase
     {
-        _restartBtn.onClick.AddListener(Restart);
-        _exitBtn.onClick.AddListener(Restart);
-        if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
-            HapticFeedback.MediumFeedback();
-    }
+        private const string Init = "Init";
+        [SerializeField] private Button _restartBtn, _exitBtn;
+        private void Start() 
+        {
+            _restartBtn.onClick.AddListener(Restart);
+            _exitBtn.onClick.AddListener(Restart);
+            if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
+                HapticFeedback.MediumFeedback();
+        }
 
-    private void Restart() => SceneManager.LoadScene(Init);
+        private void Restart() => SceneManager.LoadScene(Init);
 
-    private void OnDestroy()
-    {
-        _restartBtn.onClick.RemoveListener(Restart);
-        _restartBtn.onClick.RemoveListener(Restart);
+        private void OnDestroy()
+        {
+            _restartBtn.onClick.RemoveListener(Restart);
+            _restartBtn.onClick.RemoveListener(Restart);
+        }
     }
 }
