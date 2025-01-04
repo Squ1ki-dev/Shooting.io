@@ -6,6 +6,8 @@ namespace CodeBase.Player
     public class PlayerStatsSO : ScriptableObject
     {
         public int Level;
+        public float MaxHP = 100f;
+        public float RegenerationSpeed;
         public float Speed;
         public float AttackRange;
         public float AttackSpeed;

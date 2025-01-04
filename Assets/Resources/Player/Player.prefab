@@ -623,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _max: 100
   _damageText: {fileID: 2111380847370596372}
+  _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
   _cameraShake: {fileID: 5543972121891012472}
 --- !u!114 &8767552311403851315
 MonoBehaviour:

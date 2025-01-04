@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   Level: 1
+  MaxHP: 100
   Speed: 4
   AttackRange: 1.5
   AttackSpeed: 0.5

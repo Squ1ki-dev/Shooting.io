@@ -1,14 +1,17 @@
 using System;
+using System.Collections;
+using CodeBase.Player;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealth
 {
-    [SerializeField] private float _max = 100f;
     [SerializeField] private TMP_Text _damageText;
+    [SerializeField] private PlayerStatsSO _playerConfig;
     [SerializeField] private PlayerCameraShake _cameraShake;
     private float _current;
+    private Coroutine _regenerationCoroutine;
     public event Action HealthChanged;
 
     public float Current
@@ -23,11 +26,26 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public float Max
     {
-        get => _max;
-        set => _max = value;
+        get => _playerConfig.MaxHP;
+        set => _playerConfig.MaxHP = value;
     }
 
-    private void Awake() => _current = _max;
+    private void Awake() => _current = _playerConfig.MaxHP;
+
+    private void OnEnable()
+    {
+        if (_regenerationCoroutine == null)
+            _regenerationCoroutine = StartCoroutine(RegenerateHealth());
+    }
+
+    private void OnDisable()
+    {
+        if (_regenerationCoroutine != null)
+        {
+            StopCoroutine(_regenerationCoroutine);
+            _regenerationCoroutine = null;
+        }
+    }
 
     public void TakeDamage(float damage)
     {
@@ -44,6 +62,18 @@ public class PlayerHealth : MonoBehaviour, IHealth
         HealthChanged?.Invoke();
     }
 
+    private IEnumerator RegenerateHealth()
+    {
+        while (true)
+        {
+            if (Current < Max && _playerConfig.RegenerationSpeed > 0)
+            {
+                Current += _playerConfig.RegenerationSpeed * Time.deltaTime;
+                HealthChanged?.Invoke();
+            }
+            yield return null;
+        }
+    }
 
     private void RepresentDamage()
     {

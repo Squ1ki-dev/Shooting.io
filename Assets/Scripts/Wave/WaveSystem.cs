@@ -140,21 +140,11 @@ namespace CodeBase.Wave
             return new Vector3(center.x + xOffset, center.y, center.z + zOffset);
         }
 
-        private bool IsBossWave(int waveNumber)
-        {
-            return waveNumber % _waveSetup.BossWaveInterval == 0;
-        }
+        private bool IsBossWave(int waveNumber) => waveNumber % _waveSetup.BossWaveInterval == 0;
 
-        private float CalculateWaveTime(int waveNumber)
-        {
-            return 30 + (waveNumber - 1) * 10;
-        }
+        private float CalculateWaveTime(int waveNumber) => 30 + (waveNumber - 1) * 10;
 
-        private int CalculateWeakXP()
-        {
-            return 5; // Fixed base XP
-        }
-
+        private int CalculateWeakXP() => 5; // Fixed base XP
         private int CalculateNormalXP(int waveNumber)
         {
             int normalXP = Mathf.RoundToInt(5 * 2 + (waveNumber * 0.5f));
