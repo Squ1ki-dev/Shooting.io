@@ -48027,6 +48027,13 @@ MonoBehaviour:
   _healingHPBtn: {fileID: 109149836}
   _knivesBtn: {fileID: 986241520}
   _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
+  upgradesList:
+  - {fileID: 426454639}
+  - {fileID: 2025829251}
+  - {fileID: 449731883}
+  - {fileID: 986241520}
+  - {fileID: 1590783546}
+  - {fileID: 109149836}
 --- !u!1 &1729709950
 GameObject:
   m_ObjectHideFlags: 0

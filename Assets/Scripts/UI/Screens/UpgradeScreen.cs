@@ -14,8 +14,7 @@ namespace CodeBase.UI.Screens
     {
         [SerializeField] private Button _rangeBtn, _powerBtn, _speedBtn, _maxHPBtn, _healingHPBtn, _knivesBtn;
         [SerializeField] private PlayerStatsSO _playerConfig;
-
-        private List<Button> upgradesList;
+        [SerializeField] private List<Button> upgradesList = new List<Button>();
         private PanelManager _panelManager;
         private GameState _gameState;
 
@@ -37,7 +36,6 @@ namespace CodeBase.UI.Screens
         {
             PlayerStatsService.LoadPlayerStats(_playerConfig);
 
-            upgradesList = new List<Button> { _rangeBtn, _powerBtn, _speedBtn, _maxHPBtn, _healingHPBtn, _knivesBtn };
             ShowRandomButtons(3);
 
             _rangeBtn.onClick.AddListener(IncreaseRange);

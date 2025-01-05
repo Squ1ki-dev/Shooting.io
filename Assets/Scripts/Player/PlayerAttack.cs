@@ -16,6 +16,8 @@ namespace CodeBase.Player
         [SerializeField] private GameObject _attackSlashVFX;
         [SerializeField] private PlayerAnimator _playerAnimator;
 
+        private GameState _gameState;
+
         private static int _layerMask;
         private float _attackTimer;
         private float _attackCooldown;
@@ -26,11 +28,15 @@ namespace CodeBase.Player
 
         private void Awake()
         {
+            _gameState = FindObjectOfType<GameState>();
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
         }
 
         private void Update()
         {
+            if(_gameState.CurrentState == GameStates.Finish || _gameState.CurrentState == GameStates.Lose)
+                this.enabled = false;
+
             UpdateCooldown();
             UpdateAttack();
 

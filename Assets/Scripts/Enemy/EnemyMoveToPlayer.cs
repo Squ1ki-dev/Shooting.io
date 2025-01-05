@@ -33,10 +33,7 @@ public class EnemyMoveToPlayer : MonoBehaviour
             _agent.speed = 0;
         }
         else
-        {
             this.enabled = true;
-            _agent.speed = 3.5f;
-        }
 
         if(PlayerInitialized() && PlayerNotReached())
             _agent.destination = playerTransform.position;

@@ -144,7 +144,7 @@ namespace CodeBase.Wave
 
         private float CalculateWaveTime(int waveNumber) => 30 + (waveNumber - 1) * 10;
 
-        private int CalculateWeakXP() => 50; // Fixed base XP
+        private int CalculateWeakXP() => 7; // Fixed base XP
         private int CalculateNormalXP(int waveNumber)
         {
             int normalXP = Mathf.RoundToInt(5 * 2 + (waveNumber * 0.5f));
