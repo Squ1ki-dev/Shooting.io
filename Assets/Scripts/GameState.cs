@@ -16,7 +16,7 @@ public enum GameStates
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private int _upradeIndex, _finishIndex, _loseIndex;
+    [SerializeField] private int _upradeIndex, _upradeFinishIndex, _finishIndex, _loseIndex;
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private GameObject _blockerImg;
 
@@ -54,7 +54,7 @@ public class GameState : MonoBehaviour
                 break;
 
             case GameStates.Finish:
-                _panelManager.OpenPanelByIndex(_finishIndex);
+                _panelManager.OpenPanelByIndex(_upradeFinishIndex);
                 break;
         }
     }

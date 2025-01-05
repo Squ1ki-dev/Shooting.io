@@ -5,11 +5,13 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerAnimator))]
 public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private TMP_Text _damageText;
     [SerializeField] private PlayerStatsSO _playerConfig;
     [SerializeField] private PlayerCameraShake _cameraShake;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     private float _current;
     private Coroutine _regenerationCoroutine;
     public event Action HealthChanged;
@@ -53,7 +55,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
             return;
 
         Current -= damage;
-
+        _playerAnimator.PlayHit();
         _damageText.text = $"-{(int)damage}";
         
         _cameraShake.StartShake();

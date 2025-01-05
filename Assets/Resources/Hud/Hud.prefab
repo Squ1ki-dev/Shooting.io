@@ -526,6 +526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveNumberText: {fileID: 3712574524039791350}
   _joystick: {fileID: 9009343178365843744}
+  _waveConfig: {fileID: 11400000, guid: d771e9a01ab5ec84f90c761be51c3c5b, type: 2}
 --- !u!1 &5572482504537118657
 GameObject:
   m_ObjectHideFlags: 0

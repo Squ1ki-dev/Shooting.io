@@ -34340,8 +34340,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.438101, y: 6.2146626, z: 1.4381013}
-  m_Center: {x: -2.2654273e-15, y: 0.55065244, z: -0.06466139}
+  m_Size: {x: 1.9400032, y: 2.103343, z: 5.6388254}
+  m_Center: {x: -0.04115806, y: -0.800946, z: 2.0357032}
 --- !u!54 &8456936396377466145
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34383,4 +34383,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifeTime: 5
-  _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}

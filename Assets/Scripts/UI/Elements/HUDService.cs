@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CodeBase.Wave;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -9,12 +10,13 @@ namespace CodeBase.UI.Elements
     {
         [SerializeField] private TMP_Text _waveNumberText;
         [SerializeField] private GameObject _joystick;
+        [SerializeField] private WaveSetupSO _waveConfig;
         private GameState _gameState;
 
         private void Start()
         {
             _gameState = FindObjectOfType<GameState>();
-            _waveNumberText.text = "Wave: " + PlayerPrefs.GetInt(Constants.WaveNumber, 1).ToString();
+            _waveNumberText.text = "Wave: " + _waveConfig.CurrentWave.ToString();
 
             CheckForValidState();
         }

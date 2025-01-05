@@ -5,15 +5,16 @@ using CandyCoded.HapticFeedback;
 
 namespace CodeBase.Player
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(PlayerAnimator), typeof(CharacterController))]
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField] private Vector3 boxSize;
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private Transform _attackKnifePoint;
+        [SerializeField] private Transform _vfxPoint;
         [SerializeField] private GameObject _knifePrefab;
         [SerializeField] private PlayerStatsSO _playerConfig;
         [SerializeField] private GameObject _attackSlashVFX;
+        [SerializeField] private PlayerAnimator _playerAnimator;
 
         private static int _layerMask;
         private float _attackTimer;
@@ -33,7 +34,7 @@ namespace CodeBase.Player
             UpdateCooldown();
             UpdateAttack();
 
-            if(CanAttack())
+            if(CanAttack() && !_playerAnimator.IsAttacking)
                 StartAttack();
         }
 
@@ -99,12 +100,6 @@ namespace CodeBase.Player
 
                 GameObject knife = ObjectPool.SpawnObject(_knifePrefab, _attackKnifePoint.position, Quaternion.LookRotation(direction));
                 Debug.Log($"Knife #{i + 1} launched at {enemyTransform.name}.");
-
-                if (enemyTransform.TryGetComponent<IHealth>(out IHealth health))
-                {
-                    health.TakeDamage(_playerConfig.KnivesDamage);
-                    ObjectPool.ReturnToPool(knife);
-                }
             }
         }
 
@@ -135,13 +130,11 @@ namespace CodeBase.Player
         private int Hit() =>
             Physics.OverlapSphereNonAlloc(_attackPoint.position, _playerConfig.AttackRange, _hits, _layerMask);
 
-        private int KnifeHit() =>
-            Physics.OverlapSphereNonAlloc(_attackKnifePoint.position, 10f, _hits, _layerMask);
-
         private IEnumerator ActivateAttackVFX()
         {
-            Quaternion attackVFXRotation = Quaternion.Euler(-90, 0, 0);
-            GameObject _attackVFX = ObjectPool.SpawnObject(_attackSlashVFX, _attackPoint.position, attackVFXRotation);
+            _playerAnimator.PlayAttack();
+            yield return new WaitForSeconds(0.15f);
+            GameObject _attackVFX = ObjectPool.SpawnObject(_attackSlashVFX, _vfxPoint.position, _vfxPoint.rotation);
             yield return new WaitForSeconds(1.5f);
             ObjectPool.ReturnToPool(_attackVFX);
         }

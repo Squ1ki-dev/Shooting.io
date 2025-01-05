@@ -24,6 +24,7 @@ namespace CodeBase.UI.Screens
         private const float _damageGrowth = 0.10f;
         private const float _movementSpeedGrowth = 0.02f;
         private const float _maxHPGrowth = 0.10f;
+        private const float _regenerationGrowth = 0.02f;
 
         [Inject]
         private void Construct(GameState gameState, PanelManager panelManager)
@@ -95,7 +96,7 @@ namespace CodeBase.UI.Screens
 
         private void IncreaseRegenerationSpeed()
         {
-            _playerConfig.RegenerationSpeed = CalculateStat(_playerConfig.RegenerationSpeed, _movementSpeedGrowth);
+            _playerConfig.RegenerationSpeed = CalculateStat(_playerConfig.RegenerationSpeed, _regenerationGrowth);
             ContinueGame();
         }
 
@@ -107,6 +108,7 @@ namespace CodeBase.UI.Screens
             {
                 _playerConfig.AmountOfKnives = _maxAmountOfKnives;
                 _knivesBtn.enabled = false;
+                _knivesBtn.interactable = false;
             }
 
             ContinueGame();

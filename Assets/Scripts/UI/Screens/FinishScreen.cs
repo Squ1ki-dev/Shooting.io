@@ -34,7 +34,6 @@ namespace CodeBase.UI.Screens
         private void NextWave()
         {
             _waveConfig.CurrentWave++;
-            PlayerPrefs.SetInt(Constants.WaveNumber, _waveConfig.CurrentWave);
             Debug.Log($"Current Wave " + _waveConfig.CurrentWave);
             SceneManager.LoadScene(Init);
         }

@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeBase.Player;
 
+[RequireComponent(typeof(PlayerAnimator))]
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerMove playerMove;
-    private GameState _gameState;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private GameObject deathFx;
+    private GameState _gameState;
     private bool _isDead;
 
     private void Start()
@@ -35,6 +37,8 @@ public class PlayerDeath : MonoBehaviour
 
     private void Die()
     {
+        _playerAnimator.PlayDeath();
+        
         _isDead = true;
         playerMove.enabled = false;
         playerAttack.enabled = false;
