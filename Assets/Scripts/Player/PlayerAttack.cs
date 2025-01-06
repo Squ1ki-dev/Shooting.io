@@ -21,9 +21,10 @@ namespace CodeBase.Player
         private static int _layerMask;
         private float _attackTimer;
         private float _attackCooldown;
+        private float _knifeAttackCooldown = 7f;
         private bool _isAttacking;
         private bool _attackIsActive;
-        
+
         private Collider[] _hits = new Collider[3];
 
         private void Awake()
@@ -34,13 +35,14 @@ namespace CodeBase.Player
 
         private void Update()
         {
-            if(_gameState.CurrentState == GameStates.Finish || _gameState.CurrentState == GameStates.Lose)
+            if (_gameState.CurrentState != GameStates.Game)
                 this.enabled = false;
 
             UpdateCooldown();
+            UpdateKnifeCooldown();
             UpdateAttack();
 
-            if(CanAttack() && !_playerAnimator.IsAttacking)
+            if (CanAttack() && !_playerAnimator.IsAttacking)
                 StartAttack();
         }
 
@@ -53,6 +55,15 @@ namespace CodeBase.Player
             }
         }
 
+        private void UpdateKnifeCooldown()
+        {
+            if (_knifeAttackCooldown > 0)
+            {
+                _knifeAttackCooldown -= Time.deltaTime;
+                _knifeAttackCooldown = Mathf.Max(_knifeAttackCooldown, 0); // Clamp to 0
+            }
+        }
+
         private void StartAttack()
         {
             _isAttacking = true;
@@ -60,7 +71,8 @@ namespace CodeBase.Player
 
             Debug.Log("Player ATTACK started!");
             PerformAttack();
-            if (Random.Range(0f, 1f) <= 0.25f)
+
+            if (_knifeAttackCooldown <= 0 && Random.Range(0f, 1f) <= 0.3f)
                 PerformKnivesAttack();
         }
 
