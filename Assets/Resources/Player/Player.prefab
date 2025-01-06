@@ -2580,7 +2580,7 @@ MonoBehaviour:
   playerAttack: {fileID: 6563565220348536022}
   playerMove: {fileID: 3688506236307480685}
   _playerAnimator: {fileID: 6617254822361760003}
-  deathFx: {fileID: 0}
+  deathFx: {fileID: 1889919486439536, guid: 35ad08272de78064cbd645a70f31f454, type: 3}
 --- !u!114 &2297652104757437389
 MonoBehaviour:
   m_ObjectHideFlags: 0
