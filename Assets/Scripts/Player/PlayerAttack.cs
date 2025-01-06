@@ -60,7 +60,7 @@ namespace CodeBase.Player
 
             Debug.Log("Player ATTACK started!");
             PerformAttack();
-            if (Random.Range(0f, 1f) <= 0.3f)
+            if (Random.Range(0f, 1f) <= 0.25f)
                 PerformKnivesAttack();
         }
 

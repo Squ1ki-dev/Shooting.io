@@ -3,18 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyAttack))]
-public class EnemyAttackRange : AttackRange
+namespace CodeBase.Enemy
 {
-    [SerializeField] private EnemyAttack _attack;
-
-    private void Start()
+    [RequireComponent(typeof(EnemyAttack))]
+    public class EnemyAttackRange : AttackRange
     {
-        _attack.DisableAttack();
-        TriggerObserver.TriggerEnter += TriggerEnter;
-        TriggerObserver.TriggerExit += TriggerExit;
-    }
+        [SerializeField] private EnemyAttack _attack;
 
-    public override void TriggerEnter(Collider collider) => _attack.EnableAttack();
-    public override void TriggerExit(Collider collider) => _attack.DisableAttack();
+        private void Start()
+        {
+            _attack.DisableAttack();
+            TriggerObserver.TriggerEnter += TriggerEnter;
+            TriggerObserver.TriggerExit += TriggerExit;
+        }
+
+        public override void TriggerEnter(Collider collider) => _attack.EnableAttack();
+        public override void TriggerExit(Collider collider) => _attack.DisableAttack();
+    }
 }

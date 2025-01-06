@@ -16,5 +16,6 @@ MonoBehaviour:
   Health: 300
   DamageValue: 20
   AttackCooldown: 0.25
+  Speed: 8
   EnemyPrefab: {fileID: 4949932929223706187, guid: fbbfe9dfa6591d44e900e531d0c13bd2,
     type: 3}

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12474aba90f889b49856740b3ca70d16, type: 3}
   m_Name: NormalEnemyConfig
   m_EditorClassIdentifier: 
-  XPValue: 13
+  XPValue: 10
   Health: 60
   DamageValue: 8
   AttackCooldown: 0.625
-  EnemyPrefab: {fileID: 4949932929223706187, guid: 5960fdafc15c5b94f951f36c3a42ea92,
+  Speed: 3.2
+  EnemyPrefab: {fileID: 4949932929223706187, guid: 1ad77891607d7534b95ff41110d8f757,
     type: 3}

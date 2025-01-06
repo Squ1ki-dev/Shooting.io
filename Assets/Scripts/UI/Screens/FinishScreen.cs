@@ -34,6 +34,10 @@ namespace CodeBase.UI.Screens
         private void Start()
         {
             ActivateNextButton(false);
+            foreach (var item in _upgradesList)
+            {
+                item.gameObject.SetActive(true);
+            }
             ShowRandomButtons(3);
 
             _rangeBtn.onClick.AddListener(() => IncreaseRange());
@@ -113,19 +117,14 @@ namespace CodeBase.UI.Screens
             {
                 item.gameObject.SetActive(false);
             }
-            
+
             _nextWaveBtn.gameObject.SetActive(isActive);
         }
 
-        private void ExitToMenu()
-        {
-            _panelManager.CloseAllPanels();
-            SceneManager.LoadScene(Init);
-        }
+        private void ExitToMenu() => SceneManager.LoadScene(Init);
 
         private void HandleNextWave()
         {
-            _panelManager.CloseAllPanels();
             _waveConfig.CurrentWave++;
             PlayerPrefs.SetInt(Constants.WaveNumber, _waveConfig.CurrentWave);
             Debug.Log($"Current Wave " + _waveConfig.CurrentWave);

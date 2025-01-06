@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using CandyCoded.HapticFeedback;
 using CodeBase.Service;
+using CodeBase.Enemy;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float AttackDuration = 0.5f; // Time for one attack to finish
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private Transform attackPoint;
+    [SerializeField] private EnemyAnimator _animator;
 
     private IGameFactory _factory;
     private Transform _playerTranfrom;
@@ -75,6 +77,7 @@ public class EnemyAttack : MonoBehaviour
     {
         transform.LookAt(_playerTranfrom);
         _isAttacking = true;
+        _animator.PlayAttack();
         _attackTimer = AttackDuration; // Set the timer for attack duration
         OnAttack(); // Simulate attack logic
     }

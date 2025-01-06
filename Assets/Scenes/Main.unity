@@ -37704,7 +37704,13 @@ MonoBehaviour:
   _knivesBtn: {fileID: 1632653107}
   _nextWaveBtn: {fileID: 503629872}
   _exitBtn: {fileID: 1459184926}
-  _upgradesList: []
+  _upgradesList:
+  - {fileID: 796986286}
+  - {fileID: 493418768}
+  - {fileID: 129702921}
+  - {fileID: 943472135}
+  - {fileID: 1632653107}
+  - {fileID: 2048885540}
   _waveConfig: {fileID: 11400000, guid: d771e9a01ab5ec84f90c761be51c3c5b, type: 2}
   _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
 --- !u!1 &939473642
