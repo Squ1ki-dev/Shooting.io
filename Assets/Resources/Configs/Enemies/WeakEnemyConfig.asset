@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XPValue: 7
   Health: 30
-  DamageValue: 15
+  DamageValue: 5
   AttackCooldown: 1
   Speed: 2
-  EnemyPrefab: {fileID: 4949932929223706187, guid: 6274746acca145244be0f91f4cd0947c,
+  EnemyPrefab: {fileID: 4290730608132765668, guid: c678447edcf411e4aa9c743655671e12,
     type: 3}

@@ -17,5 +17,5 @@ MonoBehaviour:
   DamageValue: 8
   AttackCooldown: 0.625
   Speed: 3.2
-  EnemyPrefab: {fileID: 4949932929223706187, guid: 1ad77891607d7534b95ff41110d8f757,
+  EnemyPrefab: {fileID: 4869125240312675014, guid: d158f78f95895cc47a9914e4eb156dc8,
     type: 3}

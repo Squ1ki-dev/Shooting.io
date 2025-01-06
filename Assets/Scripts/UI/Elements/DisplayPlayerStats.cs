@@ -11,7 +11,7 @@ namespace CodeBase.UI.Elements
     {
         [SerializeField] private PlayerStatsSO _playerStats;
         [SerializeField] private TMP_Text _hpText, _speedText;
-        [SerializeField] private TMP_Text _rangeText, _damageText;
+        [SerializeField] private TMP_Text _damageText, _rangeText;
 
         private string SaveFilePath => Path.Combine(Application.persistentDataPath, "PlayerStats.json");
 
@@ -23,10 +23,10 @@ namespace CodeBase.UI.Elements
 
         private void UpdateStatsDisplay()
         {
-            _rangeText.text = $"{_playerStats.AttackRange:F2}";
-            _speedText.text = $"{_playerStats.Speed}";
-            _damageText.text = $"{_playerStats.Damage}";
             _hpText.text = $"{_playerStats.MaxHP}";
+            _speedText.text = $"{(int)_playerStats.Speed}";
+            _damageText.text = $"{_playerStats.Damage:F2}";
+            _rangeText.text = $"{_playerStats.AttackRange:F2}";
         }
     }
 }
