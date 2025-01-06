@@ -16,6 +16,8 @@ namespace CodeBase.Player
         [SerializeField] private GameObject _attackSlashVFX;
         [SerializeField] private PlayerAnimator _playerAnimator;
 
+        private GameObject _vfxObject;
+
         private GameState _gameState;
 
         private static int _layerMask;
@@ -33,11 +35,11 @@ namespace CodeBase.Player
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
         }
 
+        private void Start() => CheckForGameState();
+
         private void Update()
         {
-            if (_gameState.CurrentState != GameStates.Game)
-                this.enabled = false;
-
+            CheckForGameState();
             UpdateCooldown();
             UpdateKnifeCooldown();
             UpdateAttack();
@@ -46,12 +48,23 @@ namespace CodeBase.Player
                 StartAttack();
         }
 
+        private void CheckForGameState()
+        {
+            if (_gameState.CurrentState == GameStates.Finish || _gameState.CurrentState == GameStates.Lose)
+                this.enabled = false;
+            else
+                this.enabled = true;
+        }
+
+        private void OnAttack() => _vfxObject = ObjectPool.SpawnObject(_attackSlashVFX, _vfxPoint.position, _vfxPoint.rotation);
+        private void OnAttackEnded() => ObjectPool.ReturnToPool(_vfxObject);
+
         private void UpdateCooldown()
         {
             if (_attackCooldown > 0)
             {
                 _attackCooldown -= Time.deltaTime;
-                _attackCooldown = Mathf.Max(_attackCooldown, 0); // Clamp to 0
+                _attackCooldown = Mathf.Max(_attackCooldown, 0);
             }
         }
 
@@ -60,7 +73,7 @@ namespace CodeBase.Player
             if (_knifeAttackCooldown > 0)
             {
                 _knifeAttackCooldown -= Time.deltaTime;
-                _knifeAttackCooldown = Mathf.Max(_knifeAttackCooldown, 0); // Clamp to 0
+                _knifeAttackCooldown = Mathf.Max(_knifeAttackCooldown, 0);
             }
         }
 
@@ -84,7 +97,7 @@ namespace CodeBase.Player
 
                 if (enemy.TryGetComponent<IHealth>(out IHealth health))
                 {
-                    StartCoroutine(ActivateAttackVFX());
+                    _playerAnimator.PlayAttack();
                     health.TakeDamage(_playerConfig.Damage);
                 }
 
@@ -147,15 +160,6 @@ namespace CodeBase.Player
 
         private int Hit() =>
             Physics.OverlapSphereNonAlloc(_attackPoint.position, _playerConfig.AttackRange, _hits, _layerMask);
-
-        private IEnumerator ActivateAttackVFX()
-        {
-            _playerAnimator.PlayAttack();
-            yield return new WaitForSeconds(0.15f);
-            GameObject _attackVFX = ObjectPool.SpawnObject(_attackSlashVFX, _vfxPoint.position, _vfxPoint.rotation);
-            yield return new WaitForSeconds(1.5f);
-            ObjectPool.ReturnToPool(_attackVFX);
-        }
 
         private void OnDrawGizmos()
         {

@@ -6242,6 +6242,7 @@ GameObject:
   - component: {fileID: 3475840027562975548}
   - component: {fileID: 6034335637898019270}
   - component: {fileID: 5610681145109421056}
+  - component: {fileID: 1873817486017090427}
   m_Layer: 10
   m_Name: WeakEnemy
   m_TagString: Untagged
@@ -6396,7 +6397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cleavage: 3
-  AttackDuration: 0.5
   enemySO: {fileID: 11400000, guid: 856ef25846af15c4eaa66c77e3f5602f, type: 2}
   attackPoint: {fileID: 3753220282149067344}
   _animator: {fileID: 6279751376816636295}
@@ -6456,6 +6456,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyMove: {fileID: 6288062564387945920}
   _enemyAttack: {fileID: 1760436056156494351}
+--- !u!114 &1873817486017090427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4290730608132765668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df72731769f38742a1af0805ccadc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpBar: {fileID: 4844305458331894041}
 --- !u!1 &4424682097603295561
 GameObject:
   m_ObjectHideFlags: 0
