@@ -5,14 +5,20 @@ using UnityEngine.UI;
 using Zenject;
 using UnityEngine.SceneManagement;
 using CodeBase.Wave;
+using System.Linq;
+using CodeBase.Service;
+using CodeBase.Player;
 
 namespace CodeBase.UI.Screens
 {
     public class FinishScreen : WindowBase
     {
         private const string Init = "Init";
+        [SerializeField] private Button _rangeBtn, _powerBtn, _speedBtn, _maxHPBtn, _healingHPBtn, _knivesBtn;
         [SerializeField] private Button _nextWaveBtn, _exitBtn;
+        [SerializeField] private List<Button> upgradesList = new List<Button>();
         [SerializeField] private WaveSetupSO _waveConfig;
+        [SerializeField] private PlayerStatsSO _playerConfig;
         private WaveSystem _waveSystem;
         private PanelManager _panelManager;
         private GameState _gameState;
@@ -25,24 +31,109 @@ namespace CodeBase.UI.Screens
             _panelManager = panelManager;
         }
 
-        private void Start() 
+        private void Start()
         {
-            _nextWaveBtn.onClick.AddListener(NextWave);
-            _exitBtn.onClick.AddListener(NextWave);
+            ActivateNextButton(false);
+            ShowRandomButtons(3);
+
+            _rangeBtn.onClick.AddListener(() => IncreaseRange());
+            _powerBtn.onClick.AddListener(() => IncreasePower());
+            _speedBtn.onClick.AddListener(() => IncreaseSpeed());
+            _maxHPBtn.onClick.AddListener(() => IncreaseMaxHP());
+            _healingHPBtn.onClick.AddListener(() => IncreaseRegenerationSpeed());
+            _knivesBtn.onClick.AddListener(() => HandleKnivesUpgrade());
+            _nextWaveBtn.onClick.AddListener(() => HandleNextWave());
+            _exitBtn.onClick.AddListener(() => ExitToMenu());
         }
 
-        private void NextWave()
+        private void ShowRandomButtons(int count)
         {
+            foreach (var button in upgradesList)
+            {
+                button.gameObject.SetActive(false);
+            }
+
+            var randomButtons = upgradesList
+                .OrderBy(x => UnityEngine.Random.value)
+                .Take(count)
+                .ToList();
+
+            foreach (var button in randomButtons)
+            {
+                button.gameObject.SetActive(true);
+            }
+        }
+
+        private void IncreaseRange()
+        {
+            UpgradeService.IncreaseRange(_playerConfig);
+            ActivateNextButton(true);
+        }
+
+        private void IncreasePower()
+        {
+            UpgradeService.IncreasePower(_playerConfig);
+            ActivateNextButton(true);
+        }
+
+        private void IncreaseSpeed()
+        {
+            UpgradeService.IncreaseSpeed(_playerConfig);
+            ActivateNextButton(true);
+        }
+
+        private void IncreaseMaxHP()
+        {
+            UpgradeService.IncreaseMaxHP(_playerConfig);
+            ActivateNextButton(true);
+        }
+
+        private void IncreaseRegenerationSpeed()
+        {
+            UpgradeService.IncreaseRegenerationSpeed(_playerConfig);
+            ActivateNextButton(true);
+        }
+
+        private void HandleKnivesUpgrade()
+        {
+            UpgradeService.IncreaseAmountOfKnives(_playerConfig);
+
+            if (_playerConfig.AmountOfKnives >= UpgradeService.MaxAmountOfKnives)
+            {
+                _knivesBtn.enabled = false;
+                _knivesBtn.interactable = false;
+            }
+
+            ActivateNextButton(true);
+        }
+
+        private void ActivateNextButton(bool isActive) => _nextWaveBtn.gameObject.SetActive(isActive);
+
+        private void ExitToMenu()
+        {
+            _panelManager.CloseAllPanels();
+            SceneManager.LoadScene(Init);
+        }
+
+        private void HandleNextWave()
+        {
+            _panelManager.CloseAllPanels();
             _waveConfig.CurrentWave++;
+            PlayerPrefs.SetInt(Constants.WaveNumber, _waveConfig.CurrentWave);
             Debug.Log($"Current Wave " + _waveConfig.CurrentWave);
             SceneManager.LoadScene(Init);
         }
 
         private void OnDestroy()
         {
-            _nextWaveBtn.onClick.RemoveListener(NextWave);
-            _exitBtn.onClick.RemoveListener(NextWave);
+            _rangeBtn.onClick.RemoveListener(() => IncreaseRange());
+            _powerBtn.onClick.RemoveListener(() => IncreasePower());
+            _speedBtn.onClick.RemoveListener(() => IncreaseSpeed());
+            _maxHPBtn.onClick.RemoveListener(() => IncreaseMaxHP());
+            _healingHPBtn.onClick.RemoveListener(() => IncreaseRegenerationSpeed());
+            _knivesBtn.onClick.RemoveListener(() => HandleKnivesUpgrade());
+            _nextWaveBtn.onClick.RemoveListener(() => HandleNextWave());
+            _exitBtn.onClick.RemoveListener(() => ExitToMenu());
         }
     }
 }
-

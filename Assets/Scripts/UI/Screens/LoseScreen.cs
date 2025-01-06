@@ -14,14 +14,17 @@ namespace CodeBase.UI.Screens
         [SerializeField] private Button _restartBtn, _exitBtn;
         private void Start() 
         {
-            SaveWaveNumber();
             _restartBtn.onClick.AddListener(Restart);
             _exitBtn.onClick.AddListener(Restart);
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
                 HapticFeedback.MediumFeedback();
         }
 
-        private void Restart() => SceneManager.LoadScene(Init);
+        private void Restart() 
+        {
+            SceneManager.LoadScene(Init);
+            SaveWaveNumber();
+        }
 
         private void SaveWaveNumber()
         {
