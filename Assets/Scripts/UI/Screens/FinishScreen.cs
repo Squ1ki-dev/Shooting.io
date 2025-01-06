@@ -16,7 +16,7 @@ namespace CodeBase.UI.Screens
         private const string Init = "Init";
         [SerializeField] private Button _rangeBtn, _powerBtn, _speedBtn, _maxHPBtn, _healingHPBtn, _knivesBtn;
         [SerializeField] private Button _nextWaveBtn, _exitBtn;
-        [SerializeField] private List<Button> upgradesList = new List<Button>();
+        [SerializeField] private List<Button> _upgradesList = new List<Button>();
         [SerializeField] private WaveSetupSO _waveConfig;
         [SerializeField] private PlayerStatsSO _playerConfig;
         private WaveSystem _waveSystem;
@@ -48,12 +48,12 @@ namespace CodeBase.UI.Screens
 
         private void ShowRandomButtons(int count)
         {
-            foreach (var button in upgradesList)
+            foreach (var button in _upgradesList)
             {
                 button.gameObject.SetActive(false);
             }
 
-            var randomButtons = upgradesList
+            var randomButtons = _upgradesList
                 .OrderBy(x => UnityEngine.Random.value)
                 .Take(count)
                 .ToList();
@@ -107,7 +107,15 @@ namespace CodeBase.UI.Screens
             ActivateNextButton(true);
         }
 
-        private void ActivateNextButton(bool isActive) => _nextWaveBtn.gameObject.SetActive(isActive);
+        private void ActivateNextButton(bool isActive) 
+        {
+            foreach (var item in _upgradesList)
+            {
+                item.gameObject.SetActive(false);
+            }
+            
+            _nextWaveBtn.gameObject.SetActive(isActive);
+        }
 
         private void ExitToMenu()
         {
