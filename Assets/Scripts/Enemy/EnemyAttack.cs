@@ -41,7 +41,6 @@ public class EnemyAttack : MonoBehaviour
     {
         if (Hit(out Collider hit))
         {
-            PhysicsDebug.DrawDebug(attackPoint.position, Cleavage, 3);
             Debug.Log($"Hit Player: {hit.name}");
             hit.transform.GetComponent<IHealth>().TakeDamage(enemySO.DamageValue);
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
