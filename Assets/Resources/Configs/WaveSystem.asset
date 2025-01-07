@@ -19,5 +19,5 @@ MonoBehaviour:
   BossWaveInterval: 10
   BossWaveWeakEnemies: 10
   BossWaveNormalEnemies: 15
-  MinSpawnRadius: 20
+  MinSpawnRadius: 15
   MaxSpawnRadius: 180
