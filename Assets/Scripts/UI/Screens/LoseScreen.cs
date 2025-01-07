@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CandyCoded.HapticFeedback;
 using CodeBase.Wave;
+using GameAnalyticsSDK;
 
 namespace CodeBase.UI.Screens
 {
@@ -17,6 +18,8 @@ namespace CodeBase.UI.Screens
         private void Start() 
         {
             TinySauce.OnGameFinished(false, _waveConfig.CurrentWave);
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "World_01", Constants.WaveNumber, _waveConfig.CurrentWave);
+
             _restartBtn.onClick.AddListener(Restart);
             _exitBtn.onClick.AddListener(Restart);
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)

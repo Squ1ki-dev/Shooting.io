@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using GameAnalyticsSDK;
 
 namespace CodeBase.UI.Screens
 {
@@ -15,6 +16,7 @@ namespace CodeBase.UI.Screens
 
         private void Start()
         {
+            TinySauce.OnGameStarted("StartGame");
             _playBtn.enabled = true;
             _playBtn.onClick.AddListener(OnPlayButtonPressed);
             _settingsBtn.onClick.AddListener(OpenSettings);
@@ -26,6 +28,7 @@ namespace CodeBase.UI.Screens
             _playBtn.enabled = false;
             _gameBootstrapper.Run();
             TinySauce.OnGameStarted(Constants.WaveNumber);
+            GameAnalytics.NewProgressionEvent (GAProgressionStatus.Start, "World_01", Constants.WaveNumber);
         }
 
         private void OnDestroy()
