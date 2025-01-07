@@ -25,6 +25,7 @@ namespace CodeBase.UI.Screens
         {
             _playBtn.enabled = false;
             _gameBootstrapper.Run();
+            TinySauce.OnGameStarted(Constants.WaveNumber);
         }
 
         private void OnDestroy()

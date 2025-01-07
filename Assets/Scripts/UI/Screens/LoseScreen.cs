@@ -5,15 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CandyCoded.HapticFeedback;
+using CodeBase.Wave;
 
 namespace CodeBase.UI.Screens
 {
     public class LoseScreen : WindowBase
     {
         private const string Init = "Init";
+        [SerializeField] private WaveSetupSO _waveConfig;
         [SerializeField] private Button _restartBtn, _exitBtn;
         private void Start() 
         {
+            TinySauce.OnGameFinished(false, _waveConfig.CurrentWave);
             _restartBtn.onClick.AddListener(Restart);
             _exitBtn.onClick.AddListener(Restart);
             if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)

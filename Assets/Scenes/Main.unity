@@ -48852,6 +48852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0946fa1c95380f4d9b7fce341e1b34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveConfig: {fileID: 11400000, guid: d771e9a01ab5ec84f90c761be51c3c5b, type: 2}
   _restartBtn: {fileID: 1563951501}
   _exitBtn: {fileID: 410890331}
 --- !u!1 &1362258254

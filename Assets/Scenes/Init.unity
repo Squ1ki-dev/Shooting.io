@@ -4893,6 +4893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Curtain
       objectReference: {fileID: 0}
+    - target: {fileID: 6954963119426606863, guid: bf3f5b2019116204b979b67a48ee38a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8194478306743300725, guid: bf3f5b2019116204b979b67a48ee38a5,
         type: 3}
       propertyPath: m_UiScaleMode

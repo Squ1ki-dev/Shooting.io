@@ -8,6 +8,7 @@ using CodeBase.Wave;
 using System.Linq;
 using CodeBase.Service;
 using CodeBase.Player;
+using Unity.Burst.CompilerServices;
 
 namespace CodeBase.UI.Screens
 {
@@ -34,6 +35,7 @@ namespace CodeBase.UI.Screens
         private void Start()
         {
             ActivateNextButton(false);
+            TinySauce.OnGameFinished(true, _waveConfig.CurrentWave);
             foreach (var item in _upgradesList)
             {
                 item.gameObject.SetActive(true);

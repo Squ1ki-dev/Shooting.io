@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa11ec82e9746928e211e7f096812ca, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  gameAnalyticsIosGameKey: cbe774f771f57e93f786b5a76273e4d2
+  gameAnalyticsIosSecretKey: 7896e8823eb8c7d662687b7050541259e1625c79
+  gameAnalyticsAndroidGameKey: cbe774f771f57e93f786b5a76273e4d2
+  gameAnalyticsAndroidSecretKey: 7896e8823eb8c7d662687b7050541259e1625c79
+  facebookAppId: 1646898012928975
+  facebookClientToken: 8b79114d40f1edc986f62fabe7b52dc9
+  adjustIOSToken: bjodlmyhlslc
+  adjustAndroidToken: bjodlmyhlslc
+  EditorIdfa: 258aad46-83a0-4efa-8ca3-86c02d4af526
+  UseRemoteConfig: 0
+  UseVoodooAnalytics: 1
+  companyName: The Blade Games
+  privacyPolicyURL: https://docs.google.com/document/d/1NXYKSCQOg1Y0ElBZ-ZPoOapJUIDwNN--QM-VLpBslao/edit?usp=sharing
+  developerContactEmail: devunit46@gmail.com
