@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 7ca4fc276fe20fcecb48879e9cdca781
+  - b88d96a12fa0a9ae7c8790d0583cf238
   appIds:
-  - 1646898012928975
+  - 1132748555521713
   appLabels:
   - Swords and Magic Survivors
   cookie: 1
