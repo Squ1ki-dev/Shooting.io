@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12474aba90f889b49856740b3ca70d16, type: 3}
   m_Name: WeakEnemyConfig
   m_EditorClassIdentifier: 
-  XPValue: 7
-  Health: 30
+  XPValue: 5
+  Health: 20
   DamageValue: 5
-  AttackCooldown: 1
+  AttackCooldown: 2
   Speed: 2
   EnemyPrefab: {fileID: 4290730608132765668, guid: c678447edcf411e4aa9c743655671e12,
     type: 3}
