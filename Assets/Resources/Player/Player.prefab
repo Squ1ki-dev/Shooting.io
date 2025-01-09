@@ -2564,6 +2564,9 @@ MonoBehaviour:
   _playerConfig: {fileID: 11400000, guid: b38b3fa5b530cb74da57828045f712a5, type: 2}
   _cameraShake: {fileID: 3239446762740483506}
   _playerAnimator: {fileID: 6617254822361760003}
+  damageSound: {fileID: 8300000, guid: 7312f40ea81044441b770cee7401d9ee, type: 3}
+  volume: 1
+  position: {x: 0, y: 0, z: 0}
 --- !u!114 &37533961529545978
 MonoBehaviour:
   m_ObjectHideFlags: 0

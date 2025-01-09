@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     private Coroutine _regenerationCoroutine;
     public event Action HealthChanged;
 
+
     public float Current
     {
         get => _current;
@@ -57,9 +58,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
         Current -= damage;
         _playerAnimator.PlayHit();
         _damageText.text = $"-{(int)damage}";
-        
+
         _cameraShake.StartShake();
         RepresentDamage();
+
 
         HealthChanged?.Invoke();
     }
@@ -95,7 +97,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
             {
                 _damageText.transform.DOScale(1f, 0.3f);
             });
-            
+
         _damageText.DOFade(0, 0.5f)
             .SetDelay(0.5f)
             .OnComplete(() =>
