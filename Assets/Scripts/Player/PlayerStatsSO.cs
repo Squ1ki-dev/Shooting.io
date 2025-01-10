@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodeBase.Player
@@ -6,6 +7,8 @@ namespace CodeBase.Player
     public class PlayerStatsSO : ScriptableObject
     {
         public int Level;
+        public int SelectedSkinID;
+        public List<PlayerSkins> PlayerSkins;
         public float MaxHP = 100f;
         public float RegenerationSpeed;
         public float Speed;
@@ -16,5 +19,12 @@ namespace CodeBase.Player
         public float PushStrength;
         public int AmountOfKnives;
         public float KnivesDamage;
+    }
+
+    [System.Serializable]
+    public class PlayerSkins
+    {
+        public int ID;
+        public RuntimeAnimatorController runtimeAnimatorController;
     }
 }

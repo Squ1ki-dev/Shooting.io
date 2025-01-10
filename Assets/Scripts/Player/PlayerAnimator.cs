@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeBase.Logic;
@@ -18,30 +17,42 @@ namespace CodeBase.Player
         private readonly int _attackStateHash = Animator.StringToHash("Attack Normal");
         private readonly int _walkingStateHash = Animator.StringToHash("Run");
         private readonly int _deathStateHash = Animator.StringToHash("Die");
-        
-        public event Action<AnimatorState> StateEntered;
-        public event Action<AnimatorState> StateExited;
-    
-        public AnimatorState State { get; private set; }
-        
-        [SerializeField] private Animator Animator;
+
+        private int _currentSkinIndex = 0;
+
+        [SerializeField] private PlayerStatsSO _playerStatsSO;
+        [SerializeField] private Animator _animator;
         [SerializeField] private CharacterController CharacterController;
 
-        private void Update()
+        public event Action<AnimatorState> StateEntered;
+        public event Action<AnimatorState> StateExited;
+
+        public AnimatorState State { get; private set; }
+
+        private int currentSkinIndex = 0;
+
+        private void Start()
         {
-            Animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
+            if (_playerStatsSO != null && _playerStatsSO.PlayerSkins.Count > 0)
+                SetAnimatorControllerByID(PlayerPrefs.GetInt("SelectedSkinID", 0));
+        }
+
+        private void Update() 
+        {
+            _animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
+            SetAnimatorControllerByID(PlayerPrefs.GetInt("SelectedSkinID", 0));
         }
 
         public bool IsAttacking => State == AnimatorState.Attack;
 
-        public void PlayHit() => Animator.SetTrigger(HitHash);
+        public void PlayHit() => _animator.SetTrigger(HitHash);
         
-        public void PlayAttack() => Animator.SetTrigger(AttackHash);
+        public void PlayAttack() => _animator.SetTrigger(AttackHash);
 
-        public void PlayDeath() =>  Animator.SetTrigger(DieHash);
+        public void PlayDeath() => _animator.SetTrigger(DieHash);
 
-        public void ResetToIdle() => Animator.Play(_idleStateHash, -1);
-        
+        public void ResetToIdle() => _animator.Play(_idleStateHash, -1);
+
         public void EnteredState(int stateHash)
         {
             State = StateFor(stateHash);
@@ -49,7 +60,7 @@ namespace CodeBase.Player
         }
 
         public void ExitedState(int stateHash) => StateExited?.Invoke(StateFor(stateHash));
-        
+
         private AnimatorState StateFor(int stateHash)
         {
             AnimatorState state;
@@ -66,5 +77,18 @@ namespace CodeBase.Player
             
             return state;
         }
+
+        public void SetAnimatorControllerByID(int id)
+        {
+            var skin = _playerStatsSO.PlayerSkins.Find(s => s.ID == id);
+            if (skin != null)
+            {
+                _animator.runtimeAnimatorController = skin.runtimeAnimatorController;
+                Debug.Log($"Animator Controller set to ID {id}: {skin.runtimeAnimatorController.name}");
+            }
+            else
+                Debug.LogWarning($"Animator Controller with ID {id} not found!");
+        }
+
     }
 }

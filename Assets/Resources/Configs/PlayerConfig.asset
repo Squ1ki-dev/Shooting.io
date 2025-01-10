@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   Level: 1
+  SelectedSkinID: 1
+  PlayerSkins:
+  - ID: 0
+    runtimeAnimatorController: {fileID: 9100000, guid: bac704f7b9028f94d962888795a73b8c,
+      type: 2}
+  - ID: 1
+    runtimeAnimatorController: {fileID: 9100000, guid: c757a20a6395acf4294e2e190f8062b7,
+      type: 2}
   MaxHP: 100
   RegenerationSpeed: 0.5
   Speed: 4
