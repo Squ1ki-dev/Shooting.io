@@ -49,8 +49,11 @@ namespace CodeBase.UI.Elements
                 bool isActive = _playerConfig.PlayerSkins[i].ID == _selectedSkinID;
                 _skins[i].SetActive(isActive);
             }
+            UpdateCharacterType();
             SaveSelectedSkin();
         }
+
+        private void UpdateCharacterType() => _playerConfig.IsSwordsman = _selectedSkinID == 0;
 
         private void SaveSelectedSkin()
         {
@@ -59,10 +62,6 @@ namespace CodeBase.UI.Elements
             PlayerPrefs.Save();
         }
 
-
-        private bool SkinExists(int id)
-        {
-            return _playerConfig.PlayerSkins.Exists(skin => skin.ID == id);
-        }
+        private bool SkinExists(int id) => _playerConfig.PlayerSkins.Exists(skin => skin.ID == id);
     }
 }

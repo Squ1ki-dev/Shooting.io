@@ -5,6 +5,7 @@ using System;
 
 namespace CodeBase.Player
 {
+    [RequireComponent(typeof(Animator))]
     public class PlayerAnimator : MonoBehaviour, IAnimatorStateReader
     {
         private static readonly int MoveHash = Animator.StringToHash("Walking");
@@ -18,26 +19,23 @@ namespace CodeBase.Player
         private readonly int _walkingStateHash = Animator.StringToHash("Run");
         private readonly int _deathStateHash = Animator.StringToHash("Die");
 
-        private int _currentSkinIndex = 0;
-
+        private int _currentSkinIndex;
         [SerializeField] private PlayerStatsSO _playerStatsSO;
-        [SerializeField] private Animator _animator;
         [SerializeField] private CharacterController CharacterController;
 
+        private Animator _animator;
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExited;
+        public RuntimeAnimatorController _swordController, _mageController;
 
         public AnimatorState State { get; private set; }
 
-        private void Awake()
-        {
-            _currentSkinIndex = PlayerPrefs.GetInt("SelectedSkinID");
-        }
+        private void Awake() => _animator = GetComponent<Animator>();
 
         private void Start()
         {
-            // if (_playerStatsSO != null && _playerStatsSO.PlayerSkins.Count > 0)
-            SetAnimatorControllerByID(_currentSkinIndex);
+            _currentSkinIndex = PlayerPrefs.GetInt("SelectedSkinID");
+            SetAnimatorControllerByID(_currentSkinIndex); 
         }
 
         private void Update() => _animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
@@ -82,12 +80,19 @@ namespace CodeBase.Player
             var skin = _playerStatsSO.PlayerSkins.Find(s => s.ID == id);
             if (skin != null)
             {
-                _animator.runtimeAnimatorController = skin.runtimeAnimatorController;
+                this.enabled = true;
+                _animator.enabled = false; // Disable the Animator
+                _animator.runtimeAnimatorController = skin.runtimeAnimatorController as RuntimeAnimatorController;
+                _animator.enabled = true; // Re-enable the Animator
+                _animator.Rebind(); // Rebind the Animator
+                _animator.WriteDefaultValues(); // Write default values
+
                 Debug.Log($"Animator Controller set to ID {id}: {skin.runtimeAnimatorController.name}");
             }
             else
+            {
                 Debug.LogWarning($"Animator Controller with ID {id} not found!");
+            }
         }
-
     }
 }

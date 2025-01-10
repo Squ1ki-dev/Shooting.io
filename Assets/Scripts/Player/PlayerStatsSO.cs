@@ -19,6 +19,7 @@ namespace CodeBase.Player
         public float PushStrength;
         public int AmountOfKnives;
         public float KnivesDamage;
+        public bool IsSwordsman;
     }
 
     [System.Serializable]
