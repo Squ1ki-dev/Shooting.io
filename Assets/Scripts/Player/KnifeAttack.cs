@@ -13,6 +13,7 @@ namespace CodeBase.Player
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Triggered by: " + other.gameObject.name);
             if(other.gameObject.GetComponent<EnemyHealth>())
             {
                 Debug.Log($"Enemy has this comp");
@@ -23,5 +24,6 @@ namespace CodeBase.Player
                 }
             }
         }
+
     }
 }

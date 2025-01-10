@@ -10,8 +10,10 @@ namespace CodeBase.Player
     {
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private Transform _attackKnifePoint;
+        [SerializeField] private Transform _magicalAttackPoint;
         [SerializeField] private Transform _vfxPoint;
         [SerializeField] private GameObject _knifePrefab;
+        [SerializeField] private GameObject _magicalOrbPrefab;
         [SerializeField] private PlayerStatsSO _playerConfig;
         [SerializeField] private GameObject _attackSlashVFX;
         [SerializeField] private PlayerAnimator _playerAnimator;
@@ -56,8 +58,16 @@ namespace CodeBase.Player
                 this.enabled = true;
         }
 
-        private void OnAttack() => _vfxObject = ObjectPool.SpawnObject(_attackSlashVFX, _vfxPoint.position, _vfxPoint.rotation);
-        private void OnAttackEnded() => ObjectPool.ReturnToPool(_vfxObject);
+        private void OnAttack() 
+        {
+            if(_playerConfig.IsSwordsman)
+                _vfxObject = ObjectPool.SpawnObject(_attackSlashVFX, _vfxPoint.position, _vfxPoint.rotation);
+        }
+        private void OnAttackEnded() 
+        {
+            if(_playerConfig.IsSwordsman)
+                ObjectPool.ReturnToPool(_vfxObject);
+        }
 
         private void UpdateCooldown()
         {
@@ -80,13 +90,37 @@ namespace CodeBase.Player
         private void StartAttack()
         {
             _isAttacking = true;
-            _attackTimer = _playerConfig.AttackSpeed;
+            if(_playerConfig.IsSwordsman)
+            {
+                _attackTimer = _playerConfig.AttackSpeed;
+                PerformAttack();
+            }
+            else
+            {
+                _attackTimer = _playerConfig.MagicalAttackSpeed;
+                PerformMagicAttack();
+            }
 
             Debug.Log("Player ATTACK started!");
-            PerformAttack();
 
             if (_knifeAttackCooldown <= 0 && Random.Range(0f, 1f) <= 0.3f)
                 PerformKnivesAttack();
+        }
+
+        private void PerformMagicAttack()
+        {
+            for (int i = 0; i < MagicalHit(); i++)
+            {
+                var enemy = _hits[i]?.transform.parent;
+                if (enemy == null)
+                    continue;
+
+                Vector3 direction = (enemy.position - _attackKnifePoint.position).normalized;
+
+                GameObject magicOrb = ObjectPool.SpawnObject(_magicalOrbPrefab, _attackKnifePoint.position, Quaternion.LookRotation(direction));
+                Debug.Log($"Magic Orb #{i + 1} launched at {enemy.name}.");
+                ActivateAttackVibration();
+            }
         }
 
         private void PerformAttack()
@@ -110,8 +144,7 @@ namespace CodeBase.Player
                     }
                 }
                 
-                if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
-                    HapticFeedback.LightFeedback();
+                ActivateAttackVibration();
 
                 Debug.Log($"Hit {_hits[i].name}");
             }
@@ -123,15 +156,22 @@ namespace CodeBase.Player
 
             for (int i = 0; i < knivesToShoot; i++)
             {
-                var enemyTransform = _hits[i]?.transform?.parent;
-                if (enemyTransform == null)
+                var enemy = _hits[i]?.transform.parent;
+                if (enemy == null)
                     continue;
 
-                Vector3 direction = (enemyTransform.position - _attackKnifePoint.position).normalized;
+                Vector3 direction = (enemy.position - _attackKnifePoint.position).normalized;
 
                 GameObject knife = ObjectPool.SpawnObject(_knifePrefab, _attackKnifePoint.position, Quaternion.LookRotation(direction));
-                Debug.Log($"Knife #{i + 1} launched at {enemyTransform.name}.");
+                Debug.Log($"Knife #{i + 1} launched at {enemy.name}.");
+                ActivateAttackVibration();
             }
+        }
+
+        private void ActivateAttackVibration()
+        {
+            if (PlayerPrefs.GetInt(Constants.VibrationParameter) == 1)
+                HapticFeedback.LightFeedback();
         }
 
         private void UpdateAttack()
@@ -160,6 +200,9 @@ namespace CodeBase.Player
 
         private int Hit() =>
             Physics.OverlapSphereNonAlloc(_attackPoint.position, _playerConfig.AttackRange, _hits, _layerMask);
+
+        private int MagicalHit() =>
+            Physics.OverlapSphereNonAlloc(_magicalAttackPoint.position, _playerConfig.MagicalAttackRange, _hits, _layerMask);
 
         private void OnDrawGizmos()
         {

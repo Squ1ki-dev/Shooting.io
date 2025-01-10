@@ -13,7 +13,9 @@ namespace CodeBase.Player
         public float RegenerationSpeed;
         public float Speed;
         public float AttackRange;
+        public float MagicalAttackRange;
         public float AttackSpeed;
+        public float MagicalAttackSpeed;
         public float Damage;
         public float AttackCooldownDuration;
         public float PushStrength;
