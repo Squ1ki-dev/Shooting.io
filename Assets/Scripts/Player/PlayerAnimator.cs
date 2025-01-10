@@ -29,19 +29,18 @@ namespace CodeBase.Player
 
         public AnimatorState State { get; private set; }
 
-        private int currentSkinIndex = 0;
+        private void Awake()
+        {
+            _currentSkinIndex = PlayerPrefs.GetInt("SelectedSkinID");
+        }
 
         private void Start()
         {
-            if (_playerStatsSO != null && _playerStatsSO.PlayerSkins.Count > 0)
-                SetAnimatorControllerByID(PlayerPrefs.GetInt("SelectedSkinID", 0));
+            // if (_playerStatsSO != null && _playerStatsSO.PlayerSkins.Count > 0)
+            SetAnimatorControllerByID(_currentSkinIndex);
         }
 
-        private void Update() 
-        {
-            _animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
-            SetAnimatorControllerByID(PlayerPrefs.GetInt("SelectedSkinID", 0));
-        }
+        private void Update() => _animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
 
         public bool IsAttacking => State == AnimatorState.Attack;
 

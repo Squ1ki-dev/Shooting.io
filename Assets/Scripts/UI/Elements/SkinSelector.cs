@@ -10,7 +10,6 @@ namespace CodeBase.UI.Elements
         private int _selectedSkinID = 0;
         [SerializeField] private List<GameObject> _skins = new List<GameObject>();
         [SerializeField] private PlayerStatsSO _playerConfig;
-        [SerializeField] private PlayerAnimator _animator;
         [SerializeField] private Button _nextBtn, _prevBtn;
 
         private void Awake()
@@ -43,18 +42,12 @@ namespace CodeBase.UI.Elements
             UpdateSkins();
         }
 
-        private void Update()
-        {
-            _animator.SetAnimatorControllerByID(_playerConfig.PlayerSkins[_selectedSkinID].ID);
-        }
-
         private void UpdateSkins()
         {
             for (int i = 0; i < _skins.Count; i++)
             {
                 bool isActive = _playerConfig.PlayerSkins[i].ID == _selectedSkinID;
                 _skins[i].SetActive(isActive);
-                _animator.SetAnimatorControllerByID(_playerConfig.PlayerSkins[i].ID);
             }
             SaveSelectedSkin();
         }
