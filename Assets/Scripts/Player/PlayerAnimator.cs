@@ -20,13 +20,12 @@ namespace CodeBase.Player
         private readonly int _deathStateHash = Animator.StringToHash("Die");
 
         private int _currentSkinIndex;
+        private Animator _animator;
         [SerializeField] private PlayerStatsSO _playerStatsSO;
         [SerializeField] private CharacterController CharacterController;
-
-        private Animator _animator;
+        
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExited;
-        public RuntimeAnimatorController _swordController, _mageController;
 
         public AnimatorState State { get; private set; }
 
