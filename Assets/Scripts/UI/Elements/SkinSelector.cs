@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeBase.Player;
 using UnityEngine.UI;
+using CodeBase.Service;
 
 namespace CodeBase.UI.Elements
 {
@@ -9,11 +10,13 @@ namespace CodeBase.UI.Elements
     {
         private int _selectedSkinID = 0;
         [SerializeField] private List<GameObject> _skins = new List<GameObject>();
+        [SerializeField] private List<GameObject> _characterImages = new List<GameObject>();
         [SerializeField] private PlayerStatsSO _playerConfig;
         [SerializeField] private Button _nextBtn, _prevBtn;
 
         private void Awake()
         {
+            PlayerStatsService.SavePlayerStats(_playerConfig);
             _nextBtn.onClick.AddListener(NextSkin);
             _prevBtn.onClick.AddListener(PreviousSkin);
         }
@@ -48,16 +51,16 @@ namespace CodeBase.UI.Elements
             {
                 bool isActive = _playerConfig.PlayerSkins[i].ID == _selectedSkinID;
                 _skins[i].SetActive(isActive);
+                _characterImages[i].SetActive(isActive);
             }
             UpdateCharacterType();
             SaveSelectedSkin();
         }
-
         private void UpdateCharacterType() => _playerConfig.IsSwordsman = _selectedSkinID == 0;
-
         private void SaveSelectedSkin()
         {
             _playerConfig.SelectedSkinID = _selectedSkinID;
+            PlayerStatsService.SavePlayerStats(_playerConfig);
             PlayerPrefs.SetInt("SelectedSkinID", _selectedSkinID);
             PlayerPrefs.Save();
         }

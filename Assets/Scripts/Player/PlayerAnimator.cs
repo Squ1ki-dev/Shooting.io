@@ -81,11 +81,11 @@ namespace CodeBase.Player
             if (skin != null)
             {
                 this.enabled = true;
-                _animator.enabled = false; // Disable the Animator
-                _animator.runtimeAnimatorController = skin.runtimeAnimatorController as RuntimeAnimatorController;
-                _animator.enabled = true; // Re-enable the Animator
-                _animator.Rebind(); // Rebind the Animator
-                _animator.WriteDefaultValues(); // Write default values
+                _animator.enabled = false;
+                _animator.runtimeAnimatorController = skin.runtimeAnimatorController;
+                _animator.enabled = true;
+                _animator.Rebind();
+                _animator.WriteDefaultValues();
 
                 Debug.Log($"Animator Controller set to ID {id}: {skin.runtimeAnimatorController.name}");
             }

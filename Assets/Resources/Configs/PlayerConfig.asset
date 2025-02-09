@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe1af76d9a68604e90e134dd22fa06a, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  Level: 2
-  SelectedSkinID: 1
+  Level: 3
+  SelectedSkinID: 0
   PlayerSkins:
   - ID: 0
     runtimeAnimatorController: {fileID: 9100000, guid: bac704f7b9028f94d962888795a73b8c,
@@ -21,16 +21,16 @@ MonoBehaviour:
   - ID: 1
     runtimeAnimatorController: {fileID: 9100000, guid: c757a20a6395acf4294e2e190f8062b7,
       type: 2}
-  MaxHP: 100
+  MaxHP: 110
   RegenerationSpeed: 0.5
-  Speed: 4
-  AttackRange: 1.575
+  Speed: 4.1616
+  AttackRange: 1.6537501
   MagicalAttackRange: 7
   AttackSpeed: 0.25
   MagicalAttackSpeed: 1
-  Damage: 10
+  Damage: 13.31
   AttackCooldownDuration: 0.5
   PushStrength: 150
   AmountOfKnives: 0
   KnivesDamage: 15
-  IsSwordsman: 0
+  IsSwordsman: 1
