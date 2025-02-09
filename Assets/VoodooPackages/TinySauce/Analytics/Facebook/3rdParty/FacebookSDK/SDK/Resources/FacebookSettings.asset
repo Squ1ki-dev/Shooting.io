@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - b88d96a12fa0a9ae7c8790d0583cf238
+  - 
   appIds:
-  - 1132748555521713
+  - 
   appLabels:
-  - Swords 'n Magic Survivors
+  - 
   cookie: 1
   logging: 1
   status: 1
